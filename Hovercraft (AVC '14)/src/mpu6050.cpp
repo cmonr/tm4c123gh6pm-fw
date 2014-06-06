@@ -34,6 +34,9 @@ THE SOFTWARE.
 ===============================================
 */
 
+#include <stdlib.h>
+#include <string.h>
+
 #include "mpu6050.h"
 
 /** Default constructor, uses default I2C address.
@@ -2970,7 +2973,7 @@ bool MPU6050::writeMemoryBlock(const uint8_t *data, uint16_t dataSize, uint8_t b
     setMemoryStartAddress(address);
     uint8_t chunkSize;
     uint8_t *verifyBuffer;
-    uint8_t *progBuffer;
+    uint8_t *progBuffer = 0;    // Do this to silence compiler warnings
     uint16_t i;
     uint8_t j;
     if (verify) verifyBuffer = (uint8_t *)malloc(MPU6050_DMP_MEMORY_CHUNK_SIZE);
@@ -2987,7 +2990,7 @@ bool MPU6050::writeMemoryBlock(const uint8_t *data, uint16_t dataSize, uint8_t b
         
         if (useProgMem) {
             // write the chunk of data as specified
-            for (j = 0; j < chunkSize; j++) progBuffer[j] = pgm_read_byte(data + i + j);
+            for (j = 0; j < chunkSize; j++) progBuffer[j] = data[i + j];
         } else {
             // write the chunk of data as specified
             progBuffer = (uint8_t *)data + i;
@@ -3045,7 +3048,8 @@ bool MPU6050::writeProgMemoryBlock(const uint8_t *data, uint16_t dataSize, uint8
     return writeMemoryBlock(data, dataSize, bank, address, verify, true);
 }
 bool MPU6050::writeDMPConfigurationSet(const uint8_t *data, uint16_t dataSize, bool useProgMem) {
-    uint8_t *progBuffer, success, special;
+    uint8_t *progBuffer = 0;    // Do this to silence compiler warnings
+    uint8_t success, special;
     uint16_t i, j;
     if (useProgMem) {
         progBuffer = (uint8_t *)malloc(8); // assume 8-byte blocks, realloc later if necessary
@@ -3055,15 +3059,9 @@ bool MPU6050::writeDMPConfigurationSet(const uint8_t *data, uint16_t dataSize, b
     // [bank] [offset] [length] [byte[0], byte[1], ..., byte[length]]
     uint8_t bank, offset, length;
     for (i = 0; i < dataSize;) {
-        if (useProgMem) {
-            bank = pgm_read_byte(data + i++);
-            offset = pgm_read_byte(data + i++);
-            length = pgm_read_byte(data + i++);
-        } else {
-            bank = data[i++];
-            offset = data[i++];
-            length = data[i++];
-        }
+        bank = data[i++];
+        offset = data[i++];
+        length = data[i++];
 
         // write data or perform special action
         if (length > 0) {
@@ -3076,7 +3074,7 @@ bool MPU6050::writeDMPConfigurationSet(const uint8_t *data, uint16_t dataSize, b
             Serial.println(length);*/
             if (useProgMem) {
                 if (sizeof(progBuffer) < length) progBuffer = (uint8_t *)realloc(progBuffer, length);
-                for (j = 0; j < length; j++) progBuffer[j] = pgm_read_byte(data + i + j);
+                for (j = 0; j < length; j++) progBuffer[j] = data[i + j];
             } else {
                 progBuffer = (uint8_t *)data + i;
             }
@@ -3088,11 +3086,8 @@ bool MPU6050::writeDMPConfigurationSet(const uint8_t *data, uint16_t dataSize, b
             // is totally undocumented. This code is in here based on observed
             // behavior only, and exactly why (or even whether) it has to be here
             // is anybody's guess for now.
-            if (useProgMem) {
-                special = pgm_read_byte(data + i++);
-            } else {
-                special = data[i++];
-            }
+            special = data[i++];
+
             /*Serial.print("Special command code ");
             Serial.print(special, HEX);
             Serial.println(" found...");*/

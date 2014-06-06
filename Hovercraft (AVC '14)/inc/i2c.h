@@ -100,13 +100,13 @@ bool i2c_writeWords( tI2C*, uint8_t addr, uint8_t reg, uint8_t size, uint16_t* d
 
 // TODO: Add Timeout???
 //  Probably not... Can be a config option as a part of the device, not a parameter sent to the function
-uint8_t i2c_readBit( tI2C*, uint8_t addr, uint8_t reg, uint8_t bitOffset, uint8_t data);
-uint8_t i2c_readBitW( tI2C*, uint8_t addr, uint8_t reg, uint8_t bitOffset, uint16_t data);
-uint8_t i2c_readByte( tI2C*, uint8_t addr, uint8_t reg, uint8_t data);
-uint8_t i2c_readWord( tI2C*, uint8_t addr, uint8_t reg, uint16_t data);
+uint8_t i2c_readBit( tI2C*, uint8_t addr, uint8_t reg, uint8_t bitOffset, uint8_t* data);
+uint8_t i2c_readBitW( tI2C*, uint8_t addr, uint8_t reg, uint8_t bitOffset, uint16_t* data);
+uint8_t i2c_readByte( tI2C*, uint8_t addr, uint8_t reg, uint8_t* data);
+uint8_t i2c_readWord( tI2C*, uint8_t addr, uint8_t reg, uint16_t* data);
 
-uint8_t i2c_readBits( tI2C*, uint8_t addr, uint8_t reg, uint8_t bitOffset, uint8_t bitSize, uint8_t data);
-uint8_t i2c_readBitsW( tI2C*, uint8_t addr, uint8_t reg, uint8_t bitOffset, uint8_t bitSize, uint16_t data);
+uint8_t i2c_readBits( tI2C*, uint8_t addr, uint8_t reg, uint8_t bitOffset, uint8_t bitSize, uint8_t* data);
+uint8_t i2c_readBitsW( tI2C*, uint8_t addr, uint8_t reg, uint8_t bitOffset, uint8_t bitSize, uint16_t* data);
 uint8_t i2c_readBytes( tI2C*, uint8_t addr, uint8_t reg, uint8_t size, uint8_t* data);
 uint8_t i2c_readWords( tI2C*, uint8_t addr, uint8_t reg, uint8_t size, uint16_t* data);
 

@@ -32,6 +32,8 @@ THE SOFTWARE.
 #ifndef _HELPER_3DMATH_H_
 #define _HELPER_3DMATH_H_
 
+#include <math.h>
+
 class Quaternion {
     public:
         float w;
@@ -71,7 +73,7 @@ class Quaternion {
         }
 
         float getMagnitude() {
-            return sqrt(w*w + x*x + y*y + z*z);
+            return sqrtf(w*w + x*x + y*y + z*z);
         }
 
         void normalize() {
@@ -108,7 +110,7 @@ class VectorInt16 {
         }
 
         float getMagnitude() {
-            return sqrt(x*x + y*y + z*z);
+            return sqrtf(x*x + y*y + z*z);
         }
 
         void normalize() {
@@ -175,7 +177,7 @@ class VectorFloat {
         }
 
         float getMagnitude() {
-            return sqrt(x*x + y*y + z*z);
+            return sqrtf(x*x + y*y + z*z);
         }
 
         void normalize() {
