@@ -1,0 +1,1240 @@
+In file included from src/mpu6050.cpp:37:0:
+inc/mpu6050.h:815:33: error: 'VectorInt16' has not been declared
+             uint8_t dmpGetAccel(VectorInt16 *v, const uint8_t* packet=0);
+                                 ^
+inc/mpu6050.h:818:38: error: 'Quaternion' has not been declared
+             uint8_t dmpGetQuaternion(Quaternion *q, const uint8_t* packet=0);
+                                      ^
+inc/mpu6050.h:821:43: error: 'Quaternion' has not been declared
+             uint8_t dmpGet6AxisQuaternion(Quaternion *q, const uint8_t* packet=0);
+                                           ^
+inc/mpu6050.h:824:46: error: 'Quaternion' has not been declared
+             uint8_t dmpGetRelativeQuaternion(Quaternion *data, const uint8_t* packet=0);
+                                              ^
+inc/mpu6050.h:827:32: error: 'VectorInt16' has not been declared
+             uint8_t dmpGetGyro(VectorInt16 *v, const uint8_t* packet=0);
+                                ^
+inc/mpu6050.h:831:39: error: 'VectorInt16' has not been declared
+             uint8_t dmpGetLinearAccel(VectorInt16 *v, const uint8_t* packet=0);
+                                       ^
+inc/mpu6050.h:832:39: error: 'VectorInt16' has not been declared
+             uint8_t dmpGetLinearAccel(VectorInt16 *v, VectorInt16 *vRaw, VectorFloat *gravity);
+                                       ^
+inc/mpu6050.h:832:55: error: 'VectorInt16' has not been declared
+             uint8_t dmpGetLinearAccel(VectorInt16 *v, VectorInt16 *vRaw, VectorFloat *gravity);
+                                                       ^
+inc/mpu6050.h:832:74: error: 'VectorFloat' has not been declared
+             uint8_t dmpGetLinearAccel(VectorInt16 *v, VectorInt16 *vRaw, VectorFloat *gravity);
+                                                                          ^
+inc/mpu6050.h:835:46: error: 'VectorInt16' has not been declared
+             uint8_t dmpGetLinearAccelInWorld(VectorInt16 *v, const uint8_t* packet=0);
+                                              ^
+inc/mpu6050.h:836:46: error: 'VectorInt16' has not been declared
+             uint8_t dmpGetLinearAccelInWorld(VectorInt16 *v, VectorInt16 *vReal, Quaternion *q);
+                                              ^
+inc/mpu6050.h:836:62: error: 'VectorInt16' has not been declared
+             uint8_t dmpGetLinearAccelInWorld(VectorInt16 *v, VectorInt16 *vReal, Quaternion *q);
+                                                              ^
+inc/mpu6050.h:836:82: error: 'Quaternion' has not been declared
+             uint8_t dmpGetLinearAccelInWorld(VectorInt16 *v, VectorInt16 *vReal, Quaternion *q);
+                                                                                  ^
+inc/mpu6050.h:839:46: error: 'VectorInt16' has not been declared
+             uint8_t dmpGetGyroAndAccelSensor(VectorInt16 *g, VectorInt16 *a, const uint8_t* packet=0);
+                                              ^
+inc/mpu6050.h:839:62: error: 'VectorInt16' has not been declared
+             uint8_t dmpGetGyroAndAccelSensor(VectorInt16 *g, VectorInt16 *a, const uint8_t* packet=0);
+                                                              ^
+inc/mpu6050.h:842:38: error: 'VectorInt16' has not been declared
+             uint8_t dmpGetGyroSensor(VectorInt16 *v, const uint8_t* packet=0);
+                                      ^
+inc/mpu6050.h:847:35: error: 'VectorInt16' has not been declared
+             uint8_t dmpGetGravity(VectorInt16 *v, const uint8_t* packet=0);
+                                   ^
+inc/mpu6050.h:848:35: error: 'VectorFloat' has not been declared
+             uint8_t dmpGetGravity(VectorFloat *v, Quaternion *q);
+                                   ^
+inc/mpu6050.h:848:51: error: 'Quaternion' has not been declared
+             uint8_t dmpGetGravity(VectorFloat *v, Quaternion *q);
+                                                   ^
+inc/mpu6050.h:851:44: error: 'VectorInt16' has not been declared
+             uint8_t dmpGetUnquantizedAccel(VectorInt16 *v, const uint8_t* packet=0);
+                                            ^
+inc/mpu6050.h:854:42: error: 'VectorInt16' has not been declared
+             uint8_t dmpGetQuantizedAccel(VectorInt16 *v, const uint8_t* packet=0);
+                                          ^
+inc/mpu6050.h:858:46: error: 'Quaternion' has not been declared
+             uint8_t dmpGetEuler(float *data, Quaternion *q);
+                                              ^
+inc/mpu6050.h:859:53: error: 'Quaternion' has not been declared
+             uint8_t dmpGetYawPitchRoll(float *data, Quaternion *q, VectorFloat *gravity);
+                                                     ^
+inc/mpu6050.h:859:68: error: 'VectorFloat' has not been declared
+             uint8_t dmpGetYawPitchRoll(float *data, Quaternion *q, VectorFloat *gravity);
+                                                                    ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getAuxVDDIOLevel()':
+src/mpu6050.cpp:89:78: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_YG_OFFS_TC, MPU6050_TC_PWR_MODE_BIT, buffer);
+                                                                              ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getRate()':
+src/mpu6050.cpp:126:54: error: 'buffer' was not declared in this scope
+     i2c_readByte(_i2c, _addr, MPU6050_RA_SMPLRT_DIV, buffer);
+                                                      ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getExternalFrameSync()':
+src/mpu6050.cpp:168:113: error: 'buffer' was not declared in this scope
+     i2c_readBits(_i2c, _addr, MPU6050_RA_CONFIG, MPU6050_CFG_EXT_SYNC_SET_BIT, MPU6050_CFG_EXT_SYNC_SET_LENGTH, buffer);
+                                                                                                                 ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getDLPFMode()':
+src/mpu6050.cpp:208:105: error: 'buffer' was not declared in this scope
+     i2c_readBits(_i2c, _addr, MPU6050_RA_CONFIG, MPU6050_CFG_DLPF_CFG_BIT, MPU6050_CFG_DLPF_CFG_LENGTH, buffer);
+                                                                                                         ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getFullScaleGyroRange()':
+src/mpu6050.cpp:243:114: error: 'buffer' was not declared in this scope
+     i2c_readBits(_i2c, _addr, MPU6050_RA_GYRO_CONFIG, MPU6050_GCONFIG_FS_SEL_BIT, MPU6050_GCONFIG_FS_SEL_LENGTH, buffer);
+                                                                                                                  ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getAccelXSelfTest()':
+src/mpu6050.cpp:265:82: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_ACCEL_CONFIG, MPU6050_ACONFIG_XA_ST_BIT, buffer);
+                                                                                  ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getAccelYSelfTest()':
+src/mpu6050.cpp:280:82: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_ACCEL_CONFIG, MPU6050_ACONFIG_YA_ST_BIT, buffer);
+                                                                                  ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getAccelZSelfTest()':
+src/mpu6050.cpp:295:82: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_ACCEL_CONFIG, MPU6050_ACONFIG_ZA_ST_BIT, buffer);
+                                                                                  ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getFullScaleAccelRange()':
+src/mpu6050.cpp:323:117: error: 'buffer' was not declared in this scope
+     i2c_readBits(_i2c, _addr, MPU6050_RA_ACCEL_CONFIG, MPU6050_ACONFIG_AFS_SEL_BIT, MPU6050_ACONFIG_AFS_SEL_LENGTH, buffer);
+                                                                                                                     ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getDHPFMode()':
+src/mpu6050.cpp:369:121: error: 'buffer' was not declared in this scope
+     i2c_readBits(_i2c, _addr, MPU6050_RA_ACCEL_CONFIG, MPU6050_ACONFIG_ACCEL_HPF_BIT, MPU6050_ACONFIG_ACCEL_HPF_LENGTH, buffer);
+                                                                                                                         ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getFreefallDetectionThreshold()':
+src/mpu6050.cpp:400:50: error: 'buffer' was not declared in this scope
+     i2c_readByte(_i2c, _addr, MPU6050_RA_FF_THR, buffer);
+                                                  ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getFreefallDetectionDuration()':
+src/mpu6050.cpp:432:50: error: 'buffer' was not declared in this scope
+     i2c_readByte(_i2c, _addr, MPU6050_RA_FF_DUR, buffer);
+                                                  ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getMotionDetectionThreshold()':
+src/mpu6050.cpp:466:51: error: 'buffer' was not declared in this scope
+     i2c_readByte(_i2c, _addr, MPU6050_RA_MOT_THR, buffer);
+                                                   ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getMotionDetectionDuration()':
+src/mpu6050.cpp:496:51: error: 'buffer' was not declared in this scope
+     i2c_readByte(_i2c, _addr, MPU6050_RA_MOT_DUR, buffer);
+                                                   ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getZeroMotionDetectionThreshold()':
+src/mpu6050.cpp:536:53: error: 'buffer' was not declared in this scope
+     i2c_readByte(_i2c, _addr, MPU6050_RA_ZRMOT_THR, buffer);
+                                                     ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getZeroMotionDetectionDuration()':
+src/mpu6050.cpp:567:53: error: 'buffer' was not declared in this scope
+     i2c_readByte(_i2c, _addr, MPU6050_RA_ZRMOT_DUR, buffer);
+                                                     ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getTempFIFOEnabled()':
+src/mpu6050.cpp:588:76: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_FIFO_EN, MPU6050_TEMP_FIFO_EN_BIT, buffer);
+                                                                            ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getXGyroFIFOEnabled()':
+src/mpu6050.cpp:606:74: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_FIFO_EN, MPU6050_XG_FIFO_EN_BIT, buffer);
+                                                                          ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getYGyroFIFOEnabled()':
+src/mpu6050.cpp:624:74: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_FIFO_EN, MPU6050_YG_FIFO_EN_BIT, buffer);
+                                                                          ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getZGyroFIFOEnabled()':
+src/mpu6050.cpp:642:74: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_FIFO_EN, MPU6050_ZG_FIFO_EN_BIT, buffer);
+                                                                          ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getAccelFIFOEnabled()':
+src/mpu6050.cpp:661:77: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_FIFO_EN, MPU6050_ACCEL_FIFO_EN_BIT, buffer);
+                                                                             ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave2FIFOEnabled()':
+src/mpu6050.cpp:679:76: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_FIFO_EN, MPU6050_SLV2_FIFO_EN_BIT, buffer);
+                                                                            ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave1FIFOEnabled()':
+src/mpu6050.cpp:697:76: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_FIFO_EN, MPU6050_SLV1_FIFO_EN_BIT, buffer);
+                                                                            ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave0FIFOEnabled()':
+src/mpu6050.cpp:715:76: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_FIFO_EN, MPU6050_SLV0_FIFO_EN_BIT, buffer);
+                                                                            ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getMultiMasterEnabled()':
+src/mpu6050.cpp:745:80: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_I2C_MST_CTRL, MPU6050_MULT_MST_EN_BIT, buffer);
+                                                                                ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getWaitForExternalSensorEnabled()':
+src/mpu6050.cpp:768:80: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_I2C_MST_CTRL, MPU6050_WAIT_FOR_ES_BIT, buffer);
+                                                                                ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave3FIFOEnabled()':
+src/mpu6050.cpp:786:82: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_I2C_MST_CTRL, MPU6050_SLV_3_FIFO_EN_BIT, buffer);
+                                                                                  ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlaveReadWriteTransitionEnabled()':
+src/mpu6050.cpp:808:82: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_I2C_MST_CTRL, MPU6050_I2C_MST_P_NSR_BIT, buffer);
+                                                                                  ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getMasterClockSpeed()':
+src/mpu6050.cpp:849:109: error: 'buffer' was not declared in this scope
+     i2c_readBits(_i2c, _addr, MPU6050_RA_I2C_MST_CTRL, MPU6050_I2C_MST_CLK_BIT, MPU6050_I2C_MST_CLK_LENGTH, buffer);
+                                                                                                             ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getSlaveAddress(uint8_t)':
+src/mpu6050.cpp:905:65: error: 'buffer' was not declared in this scope
+     i2c_readByte(_i2c, _addr, MPU6050_RA_I2C_SLV0_ADDR + num*3, buffer);
+                                                                 ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getSlaveRegister(uint8_t)':
+src/mpu6050.cpp:931:64: error: 'buffer' was not declared in this scope
+     i2c_readByte(_i2c, _addr, MPU6050_RA_I2C_SLV0_REG + num*3, buffer);
+                                                                ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlaveEnabled(uint8_t)':
+src/mpu6050.cpp:953:88: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_I2C_SLV0_CTRL + num*3, MPU6050_I2C_SLV_EN_BIT, buffer);
+                                                                                        ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlaveWordByteSwap(uint8_t)':
+src/mpu6050.cpp:979:93: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_I2C_SLV0_CTRL + num*3, MPU6050_I2C_SLV_BYTE_SW_BIT, buffer);
+                                                                                             ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlaveWriteMode(uint8_t)':
+src/mpu6050.cpp:1004:93: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_I2C_SLV0_CTRL + num*3, MPU6050_I2C_SLV_REG_DIS_BIT, buffer);
+                                                                                             ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlaveWordGroupOffset(uint8_t)':
+src/mpu6050.cpp:1030:89: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_I2C_SLV0_CTRL + num*3, MPU6050_I2C_SLV_GRP_BIT, buffer);
+                                                                                         ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getSlaveDataLength(uint8_t)':
+src/mpu6050.cpp:1052:118: error: 'buffer' was not declared in this scope
+     i2c_readBits(_i2c, _addr, MPU6050_RA_I2C_SLV0_CTRL + num*3, MPU6050_I2C_SLV_LEN_BIT, MPU6050_I2C_SLV_LEN_LENGTH, buffer);
+                                                                                                                      ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getSlave4Address()':
+src/mpu6050.cpp:1078:57: error: 'buffer' was not declared in this scope
+     i2c_readByte(_i2c, _addr, MPU6050_RA_I2C_SLV4_ADDR, buffer);
+                                                         ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getSlave4Register()':
+src/mpu6050.cpp:1097:56: error: 'buffer' was not declared in this scope
+     i2c_readByte(_i2c, _addr, MPU6050_RA_I2C_SLV4_REG, buffer);
+                                                        ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave4Enabled()':
+src/mpu6050.cpp:1124:81: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_I2C_SLV4_CTRL, MPU6050_I2C_SLV4_EN_BIT, buffer);
+                                                                                 ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave4InterruptEnabled()':
+src/mpu6050.cpp:1145:85: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_I2C_SLV4_CTRL, MPU6050_I2C_SLV4_INT_EN_BIT, buffer);
+                                                                                     ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave4WriteMode()':
+src/mpu6050.cpp:1166:86: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_I2C_SLV4_CTRL, MPU6050_I2C_SLV4_REG_DIS_BIT, buffer);
+                                                                                      ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getSlave4MasterDelay()':
+src/mpu6050.cpp:1193:120: error: 'buffer' was not declared in this scope
+     i2c_readBits(_i2c, _addr, MPU6050_RA_I2C_SLV4_CTRL, MPU6050_I2C_SLV4_MST_DLY_BIT, MPU6050_I2C_SLV4_MST_DLY_LENGTH, buffer);
+                                                                                                                        ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getSlate4InputByte()':
+src/mpu6050.cpp:1211:55: error: 'buffer' was not declared in this scope
+     i2c_readByte(_i2c, _addr, MPU6050_RA_I2C_SLV4_DI, buffer);
+                                                       ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getPassthroughStatus()':
+src/mpu6050.cpp:1227:87: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_I2C_MST_STATUS, MPU6050_MST_PASS_THROUGH_BIT, buffer);
+                                                                                       ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave4IsDone()':
+src/mpu6050.cpp:1239:88: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_I2C_MST_STATUS, MPU6050_MST_I2C_SLV4_DONE_BIT, buffer);
+                                                                                        ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getLostArbitration()':
+src/mpu6050.cpp:1250:87: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_I2C_MST_STATUS, MPU6050_MST_I2C_LOST_ARB_BIT, buffer);
+                                                                                       ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave4Nack()':
+src/mpu6050.cpp:1261:88: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_I2C_MST_STATUS, MPU6050_MST_I2C_SLV4_NACK_BIT, buffer);
+                                                                                        ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave3Nack()':
+src/mpu6050.cpp:1272:88: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_I2C_MST_STATUS, MPU6050_MST_I2C_SLV3_NACK_BIT, buffer);
+                                                                                        ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave2Nack()':
+src/mpu6050.cpp:1283:88: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_I2C_MST_STATUS, MPU6050_MST_I2C_SLV2_NACK_BIT, buffer);
+                                                                                        ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave1Nack()':
+src/mpu6050.cpp:1294:88: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_I2C_MST_STATUS, MPU6050_MST_I2C_SLV1_NACK_BIT, buffer);
+                                                                                        ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave0Nack()':
+src/mpu6050.cpp:1305:88: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_I2C_MST_STATUS, MPU6050_MST_I2C_SLV0_NACK_BIT, buffer);
+                                                                                        ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getInterruptMode()':
+src/mpu6050.cpp:1318:84: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_INT_PIN_CFG, MPU6050_INTCFG_INT_LEVEL_BIT, buffer);
+                                                                                    ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getInterruptDrive()':
+src/mpu6050.cpp:1337:83: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_INT_PIN_CFG, MPU6050_INTCFG_INT_OPEN_BIT, buffer);
+                                                                                   ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getInterruptLatch()':
+src/mpu6050.cpp:1356:87: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_INT_PIN_CFG, MPU6050_INTCFG_LATCH_INT_EN_BIT, buffer);
+                                                                                       ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getInterruptLatchClear()':
+src/mpu6050.cpp:1375:87: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_INT_PIN_CFG, MPU6050_INTCFG_INT_RD_CLEAR_BIT, buffer);
+                                                                                       ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getFSyncInterruptLevel()':
+src/mpu6050.cpp:1394:90: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_INT_PIN_CFG, MPU6050_INTCFG_FSYNC_INT_LEVEL_BIT, buffer);
+                                                                                          ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getFSyncInterruptEnabled()':
+src/mpu6050.cpp:1413:87: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_INT_PIN_CFG, MPU6050_INTCFG_FSYNC_INT_EN_BIT, buffer);
+                                                                                       ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getI2CBypassEnabled()':
+src/mpu6050.cpp:1437:88: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_INT_PIN_CFG, MPU6050_INTCFG_I2C_BYPASS_EN_BIT, buffer);
+                                                                                        ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getClockOutputEnabled()':
+src/mpu6050.cpp:1464:84: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_INT_PIN_CFG, MPU6050_INTCFG_CLKOUT_EN_BIT, buffer);
+                                                                                    ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getIntEnabled()':
+src/mpu6050.cpp:1490:54: error: 'buffer' was not declared in this scope
+     i2c_readByte(_i2c, _addr, MPU6050_RA_INT_ENABLE, buffer);
+                                                      ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntFreefallEnabled()':
+src/mpu6050.cpp:1511:79: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_INT_ENABLE, MPU6050_INTERRUPT_FF_BIT, buffer);
+                                                                               ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntMotionEnabled()':
+src/mpu6050.cpp:1530:80: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_INT_ENABLE, MPU6050_INTERRUPT_MOT_BIT, buffer);
+                                                                                ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntZeroMotionEnabled()':
+src/mpu6050.cpp:1549:81: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_INT_ENABLE, MPU6050_INTERRUPT_ZMOT_BIT, buffer);
+                                                                                 ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntFIFOBufferOverflowEnabled()':
+src/mpu6050.cpp:1568:87: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_INT_ENABLE, MPU6050_INTERRUPT_FIFO_OFLOW_BIT, buffer);
+                                                                                       ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntI2CMasterEnabled()':
+src/mpu6050.cpp:1588:88: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_INT_ENABLE, MPU6050_INTERRUPT_I2C_MST_INT_BIT, buffer);
+                                                                                        ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntDataReadyEnabled()':
+src/mpu6050.cpp:1608:85: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_INT_ENABLE, MPU6050_INTERRUPT_DATA_RDY_BIT, buffer);
+                                                                                     ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getIntStatus()':
+src/mpu6050.cpp:1631:54: error: 'buffer' was not declared in this scope
+     i2c_readByte(_i2c, _addr, MPU6050_RA_INT_STATUS, buffer);
+                                                      ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntFreefallStatus()':
+src/mpu6050.cpp:1642:79: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_INT_STATUS, MPU6050_INTERRUPT_FF_BIT, buffer);
+                                                                               ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntMotionStatus()':
+src/mpu6050.cpp:1653:80: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_INT_STATUS, MPU6050_INTERRUPT_MOT_BIT, buffer);
+                                                                                ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntZeroMotionStatus()':
+src/mpu6050.cpp:1664:81: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_INT_STATUS, MPU6050_INTERRUPT_ZMOT_BIT, buffer);
+                                                                                 ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntFIFOBufferOverflowStatus()':
+src/mpu6050.cpp:1675:87: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_INT_STATUS, MPU6050_INTERRUPT_FIFO_OFLOW_BIT, buffer);
+                                                                                       ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntI2CMasterStatus()':
+src/mpu6050.cpp:1687:88: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_INT_STATUS, MPU6050_INTERRUPT_I2C_MST_INT_BIT, buffer);
+                                                                                        ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntDataReadyStatus()':
+src/mpu6050.cpp:1698:85: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_INT_STATUS, MPU6050_INTERRUPT_DATA_RDY_BIT, buffer);
+                                                                                     ^
+src/mpu6050.cpp: In member function 'void MPU6050::getMotion6(int16_t*, int16_t*, int16_t*, int16_t*, int16_t*, int16_t*)':
+src/mpu6050.cpp:1737:61: error: 'buffer' was not declared in this scope
+     i2c_readBytes(_i2c, _addr, MPU6050_RA_ACCEL_XOUT_H, 14, buffer);
+                                                             ^
+src/mpu6050.cpp: In member function 'void MPU6050::getAcceleration(int16_t*, int16_t*, int16_t*)':
+src/mpu6050.cpp:1782:60: error: 'buffer' was not declared in this scope
+     i2c_readBytes(_i2c, _addr, MPU6050_RA_ACCEL_XOUT_H, 6, buffer);
+                                                            ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getAccelerationX()':
+src/mpu6050.cpp:1793:60: error: 'buffer' was not declared in this scope
+     i2c_readBytes(_i2c, _addr, MPU6050_RA_ACCEL_XOUT_H, 2, buffer);
+                                                            ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getAccelerationY()':
+src/mpu6050.cpp:1802:60: error: 'buffer' was not declared in this scope
+     i2c_readBytes(_i2c, _addr, MPU6050_RA_ACCEL_YOUT_H, 2, buffer);
+                                                            ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getAccelerationZ()':
+src/mpu6050.cpp:1811:60: error: 'buffer' was not declared in this scope
+     i2c_readBytes(_i2c, _addr, MPU6050_RA_ACCEL_ZOUT_H, 2, buffer);
+                                                            ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getTemperature()':
+src/mpu6050.cpp:1822:58: error: 'buffer' was not declared in this scope
+     i2c_readBytes(_i2c, _addr, MPU6050_RA_TEMP_OUT_H, 2, buffer);
+                                                          ^
+src/mpu6050.cpp: In member function 'void MPU6050::getRotation(int16_t*, int16_t*, int16_t*)':
+src/mpu6050.cpp:1861:59: error: 'buffer' was not declared in this scope
+     i2c_readBytes(_i2c, _addr, MPU6050_RA_GYRO_XOUT_H, 6, buffer);
+                                                           ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getRotationX()':
+src/mpu6050.cpp:1872:59: error: 'buffer' was not declared in this scope
+     i2c_readBytes(_i2c, _addr, MPU6050_RA_GYRO_XOUT_H, 2, buffer);
+                                                           ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getRotationY()':
+src/mpu6050.cpp:1881:59: error: 'buffer' was not declared in this scope
+     i2c_readBytes(_i2c, _addr, MPU6050_RA_GYRO_YOUT_H, 2, buffer);
+                                                           ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getRotationZ()':
+src/mpu6050.cpp:1890:59: error: 'buffer' was not declared in this scope
+     i2c_readBytes(_i2c, _addr, MPU6050_RA_GYRO_ZOUT_H, 2, buffer);
+                                                           ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getExternalSensorByte(int)':
+src/mpu6050.cpp:1971:71: error: 'buffer' was not declared in this scope
+     i2c_readByte(_i2c, _addr, MPU6050_RA_EXT_SENS_DATA_00 + position, buffer);
+                                                                       ^
+src/mpu6050.cpp: In member function 'uint16_t MPU6050::getExternalSensorWord(int)':
+src/mpu6050.cpp:1980:75: error: 'buffer' was not declared in this scope
+     i2c_readBytes(_i2c, _addr, MPU6050_RA_EXT_SENS_DATA_00 + position, 2, buffer);
+                                                                           ^
+src/mpu6050.cpp: In member function 'uint32_t MPU6050::getExternalSensorDWord(int)':
+src/mpu6050.cpp:1989:75: error: 'buffer' was not declared in this scope
+     i2c_readBytes(_i2c, _addr, MPU6050_RA_EXT_SENS_DATA_00 + position, 4, buffer);
+                                                                           ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getXNegMotionDetected()':
+src/mpu6050.cpp:2001:89: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_MOT_DETECT_STATUS, MPU6050_MOTION_MOT_XNEG_BIT, buffer);
+                                                                                         ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getXPosMotionDetected()':
+src/mpu6050.cpp:2010:89: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_MOT_DETECT_STATUS, MPU6050_MOTION_MOT_XPOS_BIT, buffer);
+                                                                                         ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getYNegMotionDetected()':
+src/mpu6050.cpp:2019:89: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_MOT_DETECT_STATUS, MPU6050_MOTION_MOT_YNEG_BIT, buffer);
+                                                                                         ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getYPosMotionDetected()':
+src/mpu6050.cpp:2028:89: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_MOT_DETECT_STATUS, MPU6050_MOTION_MOT_YPOS_BIT, buffer);
+                                                                                         ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getZNegMotionDetected()':
+src/mpu6050.cpp:2037:89: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_MOT_DETECT_STATUS, MPU6050_MOTION_MOT_ZNEG_BIT, buffer);
+                                                                                         ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getZPosMotionDetected()':
+src/mpu6050.cpp:2046:89: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_MOT_DETECT_STATUS, MPU6050_MOTION_MOT_ZPOS_BIT, buffer);
+                                                                                         ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getZeroMotionDetected()':
+src/mpu6050.cpp:2055:90: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_MOT_DETECT_STATUS, MPU6050_MOTION_MOT_ZRMOT_BIT, buffer);
+                                                                                          ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getExternalShadowDelayEnabled()':
+src/mpu6050.cpp:2085:100: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_I2C_MST_DELAY_CTRL, MPU6050_DELAYCTRL_DELAY_ES_SHADOW_BIT, buffer);
+                                                                                                    ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlaveDelayEnabled(uint8_t)':
+src/mpu6050.cpp:2118:66: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_I2C_MST_DELAY_CTRL, num, buffer);
+                                                                  ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getAccelerometerPowerOnDelay()':
+src/mpu6050.cpp:2178:132: error: 'buffer' was not declared in this scope
+     i2c_readBits(_i2c, _addr, MPU6050_RA_MOT_DETECT_CTRL, MPU6050_DETECT_ACCEL_ON_DELAY_BIT, MPU6050_DETECT_ACCEL_ON_DELAY_LENGTH, buffer);
+                                                                                                                                    ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getFreefallDetectionCounterDecrement()':
+src/mpu6050.cpp:2217:120: error: 'buffer' was not declared in this scope
+     i2c_readBits(_i2c, _addr, MPU6050_RA_MOT_DETECT_CTRL, MPU6050_DETECT_FF_COUNT_BIT, MPU6050_DETECT_FF_COUNT_LENGTH, buffer);
+                                                                                                                        ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getMotionDetectionCounterDecrement()':
+src/mpu6050.cpp:2253:122: error: 'buffer' was not declared in this scope
+     i2c_readBits(_i2c, _addr, MPU6050_RA_MOT_DETECT_CTRL, MPU6050_DETECT_MOT_COUNT_BIT, MPU6050_DETECT_MOT_COUNT_LENGTH, buffer);
+                                                                                                                          ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getFIFOEnabled()':
+src/mpu6050.cpp:2277:82: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_USER_CTRL, MPU6050_USERCTRL_FIFO_EN_BIT, buffer);
+                                                                                  ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getI2CMasterModeEnabled()':
+src/mpu6050.cpp:2301:85: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_USER_CTRL, MPU6050_USERCTRL_I2C_MST_EN_BIT, buffer);
+                                                                                     ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSleepEnabled()':
+src/mpu6050.cpp:2376:77: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_PWR_MGMT_1, MPU6050_PWR1_SLEEP_BIT, buffer);
+                                                                             ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getWakeCycleEnabled()':
+src/mpu6050.cpp:2397:77: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_PWR_MGMT_1, MPU6050_PWR1_CYCLE_BIT, buffer);
+                                                                             ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getTempSensorEnabled()':
+src/mpu6050.cpp:2421:80: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_PWR_MGMT_1, MPU6050_PWR1_TEMP_DIS_BIT, buffer);
+                                                                                ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getClockSource()':
+src/mpu6050.cpp:2445:107: error: 'buffer' was not declared in this scope
+     i2c_readBits(_i2c, _addr, MPU6050_RA_PWR_MGMT_1, MPU6050_PWR1_CLKSEL_BIT, MPU6050_PWR1_CLKSEL_LENGTH, buffer);
+                                                                                                           ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getWakeFrequency()':
+src/mpu6050.cpp:2508:119: error: 'buffer' was not declared in this scope
+     i2c_readBits(_i2c, _addr, MPU6050_RA_PWR_MGMT_2, MPU6050_PWR2_LP_WAKE_CTRL_BIT, MPU6050_PWR2_LP_WAKE_CTRL_LENGTH, buffer);
+                                                                                                                       ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getStandbyXAccelEnabled()':
+src/mpu6050.cpp:2526:79: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_PWR_MGMT_2, MPU6050_PWR2_STBY_XA_BIT, buffer);
+                                                                               ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getStandbyYAccelEnabled()':
+src/mpu6050.cpp:2545:79: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_PWR_MGMT_2, MPU6050_PWR2_STBY_YA_BIT, buffer);
+                                                                               ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getStandbyZAccelEnabled()':
+src/mpu6050.cpp:2564:79: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_PWR_MGMT_2, MPU6050_PWR2_STBY_ZA_BIT, buffer);
+                                                                               ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getStandbyXGyroEnabled()':
+src/mpu6050.cpp:2583:79: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_PWR_MGMT_2, MPU6050_PWR2_STBY_XG_BIT, buffer);
+                                                                               ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getStandbyYGyroEnabled()':
+src/mpu6050.cpp:2602:79: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_PWR_MGMT_2, MPU6050_PWR2_STBY_YG_BIT, buffer);
+                                                                               ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getStandbyZGyroEnabled()':
+src/mpu6050.cpp:2621:79: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_PWR_MGMT_2, MPU6050_PWR2_STBY_ZG_BIT, buffer);
+                                                                               ^
+src/mpu6050.cpp: In member function 'uint16_t MPU6050::getFIFOCount()':
+src/mpu6050.cpp:2644:59: error: 'buffer' was not declared in this scope
+     i2c_readBytes(_i2c, _addr, MPU6050_RA_FIFO_COUNTH, 2, buffer);
+                                                           ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getFIFOByte()':
+src/mpu6050.cpp:2676:52: error: 'buffer' was not declared in this scope
+     i2c_readByte(_i2c, _addr, MPU6050_RA_FIFO_R_W, buffer);
+                                                    ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getDeviceID()':
+src/mpu6050.cpp:2700:99: error: 'buffer' was not declared in this scope
+     i2c_readBits(_i2c, _addr, MPU6050_RA_WHO_AM_I, MPU6050_WHO_AM_I_BIT, MPU6050_WHO_AM_I_LENGTH, buffer);
+                                                                                                   ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getOTPBankValid()':
+src/mpu6050.cpp:2721:81: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_XG_OFFS_TC, MPU6050_TC_OTP_BNK_VLD_BIT, buffer);
+                                                                                 ^
+src/mpu6050.cpp: In member function 'int8_t MPU6050::getXGyroOffsetTC()':
+src/mpu6050.cpp:2728:103: error: 'buffer' was not declared in this scope
+     i2c_readBits(_i2c, _addr, MPU6050_RA_XG_OFFS_TC, MPU6050_TC_OFFSET_BIT, MPU6050_TC_OFFSET_LENGTH, buffer);
+                                                                                                       ^
+src/mpu6050.cpp: In member function 'int8_t MPU6050::getYGyroOffsetTC()':
+src/mpu6050.cpp:2738:103: error: 'buffer' was not declared in this scope
+     i2c_readBits(_i2c, _addr, MPU6050_RA_YG_OFFS_TC, MPU6050_TC_OFFSET_BIT, MPU6050_TC_OFFSET_LENGTH, buffer);
+                                                                                                       ^
+src/mpu6050.cpp: In member function 'int8_t MPU6050::getZGyroOffsetTC()':
+src/mpu6050.cpp:2748:103: error: 'buffer' was not declared in this scope
+     i2c_readBits(_i2c, _addr, MPU6050_RA_ZG_OFFS_TC, MPU6050_TC_OFFSET_BIT, MPU6050_TC_OFFSET_LENGTH, buffer);
+                                                                                                       ^
+src/mpu6050.cpp: In member function 'int8_t MPU6050::getXFineGain()':
+src/mpu6050.cpp:2758:55: error: 'buffer' was not declared in this scope
+     i2c_readByte(_i2c, _addr, MPU6050_RA_X_FINE_GAIN, buffer);
+                                                       ^
+src/mpu6050.cpp: In member function 'int8_t MPU6050::getYFineGain()':
+src/mpu6050.cpp:2768:55: error: 'buffer' was not declared in this scope
+     i2c_readByte(_i2c, _addr, MPU6050_RA_Y_FINE_GAIN, buffer);
+                                                       ^
+src/mpu6050.cpp: In member function 'int8_t MPU6050::getZFineGain()':
+src/mpu6050.cpp:2778:55: error: 'buffer' was not declared in this scope
+     i2c_readByte(_i2c, _addr, MPU6050_RA_Z_FINE_GAIN, buffer);
+                                                       ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getXAccelOffset()':
+src/mpu6050.cpp:2788:57: error: 'buffer' was not declared in this scope
+     i2c_readBytes(_i2c, _addr, MPU6050_RA_XA_OFFS_H, 2, buffer);
+                                                         ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getYAccelOffset()':
+src/mpu6050.cpp:2798:57: error: 'buffer' was not declared in this scope
+     i2c_readBytes(_i2c, _addr, MPU6050_RA_YA_OFFS_H, 2, buffer);
+                                                         ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getZAccelOffset()':
+src/mpu6050.cpp:2808:57: error: 'buffer' was not declared in this scope
+     i2c_readBytes(_i2c, _addr, MPU6050_RA_ZA_OFFS_H, 2, buffer);
+                                                         ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getXGyroOffset()':
+src/mpu6050.cpp:2818:60: error: 'buffer' was not declared in this scope
+     i2c_readBytes(_i2c, _addr, MPU6050_RA_XG_OFFS_USRH, 2, buffer);
+                                                            ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getYGyroOffset()':
+src/mpu6050.cpp:2828:60: error: 'buffer' was not declared in this scope
+     i2c_readBytes(_i2c, _addr, MPU6050_RA_YG_OFFS_USRH, 2, buffer);
+                                                            ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getZGyroOffset()':
+src/mpu6050.cpp:2838:60: error: 'buffer' was not declared in this scope
+     i2c_readBytes(_i2c, _addr, MPU6050_RA_ZG_OFFS_USRH, 2, buffer);
+                                                            ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntPLLReadyEnabled()':
+src/mpu6050.cpp:2848:88: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_INT_ENABLE, MPU6050_INTERRUPT_PLL_RDY_INT_BIT, buffer);
+                                                                                        ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntDMPEnabled()':
+src/mpu6050.cpp:2855:84: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_INT_ENABLE, MPU6050_INTERRUPT_DMP_INT_BIT, buffer);
+                                                                                    ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getDMPInt5Status()':
+src/mpu6050.cpp:2865:79: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_DMP_INT_STATUS, MPU6050_DMPINT_5_BIT, buffer);
+                                                                               ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getDMPInt4Status()':
+src/mpu6050.cpp:2869:79: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_DMP_INT_STATUS, MPU6050_DMPINT_4_BIT, buffer);
+                                                                               ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getDMPInt3Status()':
+src/mpu6050.cpp:2873:79: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_DMP_INT_STATUS, MPU6050_DMPINT_3_BIT, buffer);
+                                                                               ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getDMPInt2Status()':
+src/mpu6050.cpp:2877:79: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_DMP_INT_STATUS, MPU6050_DMPINT_2_BIT, buffer);
+                                                                               ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getDMPInt1Status()':
+src/mpu6050.cpp:2881:79: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_DMP_INT_STATUS, MPU6050_DMPINT_1_BIT, buffer);
+                                                                               ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getDMPInt0Status()':
+src/mpu6050.cpp:2885:79: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_DMP_INT_STATUS, MPU6050_DMPINT_0_BIT, buffer);
+                                                                               ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntPLLReadyStatus()':
+src/mpu6050.cpp:2892:88: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_INT_STATUS, MPU6050_INTERRUPT_PLL_RDY_INT_BIT, buffer);
+                                                                                        ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntDMPStatus()':
+src/mpu6050.cpp:2896:84: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_INT_STATUS, MPU6050_INTERRUPT_DMP_INT_BIT, buffer);
+                                                                                    ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getDMPEnabled()':
+src/mpu6050.cpp:2903:81: error: 'buffer' was not declared in this scope
+     i2c_readBit(_i2c, _addr, MPU6050_RA_USER_CTRL, MPU6050_USERCTRL_DMP_EN_BIT, buffer);
+                                                                                 ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::readMemoryByte()':
+src/mpu6050.cpp:2931:51: error: 'buffer' was not declared in this scope
+     i2c_readByte(_i2c, _addr, MPU6050_RA_MEM_R_W, buffer);
+                                                   ^
+src/mpu6050.cpp: In member function 'bool MPU6050::writeMemoryBlock(const uint8_t*, uint16_t, uint8_t, uint8_t, bool, bool)':
+src/mpu6050.cpp:2976:79: error: 'malloc' was not declared in this scope
+     if (verify) verifyBuffer = (uint8_t *)malloc(MPU6050_DMP_MEMORY_CHUNK_SIZE);
+                                                                               ^
+src/mpu6050.cpp:2977:81: error: 'malloc' was not declared in this scope
+     if (useProgMem) progBuffer = (uint8_t *)malloc(MPU6050_DMP_MEMORY_CHUNK_SIZE);
+                                                                                 ^
+src/mpu6050.cpp:2990:87: error: 'pgm_read_byte' was not declared in this scope
+             for (j = 0; j < chunkSize; j++) progBuffer[j] = pgm_read_byte(data + i + j);
+                                                                                       ^
+src/mpu6050.cpp:2996:9: error: 'I2Cdev' has not been declared
+         I2Cdev::writeBytes(devAddr, MPU6050_RA_MEM_R_W, chunkSize, progBuffer);
+         ^
+src/mpu6050.cpp:2996:28: error: 'devAddr' was not declared in this scope
+         I2Cdev::writeBytes(devAddr, MPU6050_RA_MEM_R_W, chunkSize, progBuffer);
+                            ^
+src/mpu6050.cpp:3003:59: error: 'memcmp' was not declared in this scope
+             if (memcmp(progBuffer, verifyBuffer, chunkSize) != 0) {
+                                                           ^
+src/mpu6050.cpp:3021:34: error: 'free' was not declared in this scope
+                 free(verifyBuffer);
+                                  ^
+src/mpu6050.cpp:3040:34: error: 'free' was not declared in this scope
+     if (verify) free(verifyBuffer);
+                                  ^
+src/mpu6050.cpp:3041:36: error: 'free' was not declared in this scope
+     if (useProgMem) free(progBuffer);
+                                    ^
+src/mpu6050.cpp: In member function 'bool MPU6050::writeDMPConfigurationSet(const uint8_t*, uint16_t, bool)':
+src/mpu6050.cpp:3051:41: error: 'malloc' was not declared in this scope
+         progBuffer = (uint8_t *)malloc(8); // assume 8-byte blocks, realloc later if necessary
+                                         ^
+src/mpu6050.cpp:3059:44: error: 'pgm_read_byte' was not declared in this scope
+             bank = pgm_read_byte(data + i++);
+                                            ^
+src/mpu6050.cpp:3078:100: error: 'realloc' was not declared in this scope
+                 if (sizeof(progBuffer) < length) progBuffer = (uint8_t *)realloc(progBuffer, length);
+                                                                                                    ^
+src/mpu6050.cpp:3079:88: error: 'pgm_read_byte' was not declared in this scope
+                 for (j = 0; j < length; j++) progBuffer[j] = pgm_read_byte(data + i + j);
+                                                                                        ^
+src/mpu6050.cpp:3092:51: error: 'pgm_read_byte' was not declared in this scope
+                 special = pgm_read_byte(data + i++);
+                                                   ^
+src/mpu6050.cpp:3115:44: error: 'free' was not declared in this scope
+             if (useProgMem) free(progBuffer);
+                                            ^
+src/mpu6050.cpp:3119:36: error: 'free' was not declared in this scope
+     if (useProgMem) free(progBuffer);
+                                    ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getDMPConfig1()':
+src/mpu6050.cpp:3129:53: error: 'buffer' was not declared in this scope
+     i2c_readByte(_i2c, _addr, MPU6050_RA_DMP_CFG_1, buffer);
+                                                     ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getDMPConfig2()':
+src/mpu6050.cpp:3139:53: error: 'buffer' was not declared in this scope
+     i2c_readByte(_i2c, _addr, MPU6050_RA_DMP_CFG_2, buffer);
+                                                     ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getAuxVDDIOLevel()':
+src/mpu6050.cpp:91:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getRate()':
+src/mpu6050.cpp:128:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getExternalFrameSync()':
+src/mpu6050.cpp:170:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getDLPFMode()':
+src/mpu6050.cpp:210:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getFullScaleGyroRange()':
+src/mpu6050.cpp:245:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getAccelXSelfTest()':
+src/mpu6050.cpp:267:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getAccelYSelfTest()':
+src/mpu6050.cpp:282:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getAccelZSelfTest()':
+src/mpu6050.cpp:297:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getFullScaleAccelRange()':
+src/mpu6050.cpp:325:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getDHPFMode()':
+src/mpu6050.cpp:371:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getFreefallDetectionThreshold()':
+src/mpu6050.cpp:402:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getFreefallDetectionDuration()':
+src/mpu6050.cpp:434:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getMotionDetectionThreshold()':
+src/mpu6050.cpp:468:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getMotionDetectionDuration()':
+src/mpu6050.cpp:498:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getZeroMotionDetectionThreshold()':
+src/mpu6050.cpp:538:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getZeroMotionDetectionDuration()':
+src/mpu6050.cpp:569:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getTempFIFOEnabled()':
+src/mpu6050.cpp:590:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getXGyroFIFOEnabled()':
+src/mpu6050.cpp:608:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getYGyroFIFOEnabled()':
+src/mpu6050.cpp:626:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getZGyroFIFOEnabled()':
+src/mpu6050.cpp:644:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getAccelFIFOEnabled()':
+src/mpu6050.cpp:663:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave2FIFOEnabled()':
+src/mpu6050.cpp:681:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave1FIFOEnabled()':
+src/mpu6050.cpp:699:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave0FIFOEnabled()':
+src/mpu6050.cpp:717:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getMultiMasterEnabled()':
+src/mpu6050.cpp:747:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getWaitForExternalSensorEnabled()':
+src/mpu6050.cpp:770:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave3FIFOEnabled()':
+src/mpu6050.cpp:788:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlaveReadWriteTransitionEnabled()':
+src/mpu6050.cpp:810:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getMasterClockSpeed()':
+src/mpu6050.cpp:851:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getSlaveAddress(uint8_t)':
+src/mpu6050.cpp:907:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getSlaveRegister(uint8_t)':
+src/mpu6050.cpp:933:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlaveEnabled(uint8_t)':
+src/mpu6050.cpp:955:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlaveWordByteSwap(uint8_t)':
+src/mpu6050.cpp:981:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlaveWriteMode(uint8_t)':
+src/mpu6050.cpp:1006:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlaveWordGroupOffset(uint8_t)':
+src/mpu6050.cpp:1032:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getSlaveDataLength(uint8_t)':
+src/mpu6050.cpp:1054:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getSlave4Address()':
+src/mpu6050.cpp:1080:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getSlave4Register()':
+src/mpu6050.cpp:1099:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave4Enabled()':
+src/mpu6050.cpp:1126:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave4InterruptEnabled()':
+src/mpu6050.cpp:1147:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave4WriteMode()':
+src/mpu6050.cpp:1168:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getSlave4MasterDelay()':
+src/mpu6050.cpp:1195:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getSlate4InputByte()':
+src/mpu6050.cpp:1213:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getPassthroughStatus()':
+src/mpu6050.cpp:1229:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave4IsDone()':
+src/mpu6050.cpp:1241:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getLostArbitration()':
+src/mpu6050.cpp:1252:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave4Nack()':
+src/mpu6050.cpp:1263:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave3Nack()':
+src/mpu6050.cpp:1274:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave2Nack()':
+src/mpu6050.cpp:1285:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave1Nack()':
+src/mpu6050.cpp:1296:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlave0Nack()':
+src/mpu6050.cpp:1307:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getInterruptMode()':
+src/mpu6050.cpp:1320:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getInterruptDrive()':
+src/mpu6050.cpp:1339:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getInterruptLatch()':
+src/mpu6050.cpp:1358:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getInterruptLatchClear()':
+src/mpu6050.cpp:1377:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getFSyncInterruptLevel()':
+src/mpu6050.cpp:1396:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getFSyncInterruptEnabled()':
+src/mpu6050.cpp:1415:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getI2CBypassEnabled()':
+src/mpu6050.cpp:1439:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getClockOutputEnabled()':
+src/mpu6050.cpp:1466:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getIntEnabled()':
+src/mpu6050.cpp:1492:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntFreefallEnabled()':
+src/mpu6050.cpp:1513:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntMotionEnabled()':
+src/mpu6050.cpp:1532:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntZeroMotionEnabled()':
+src/mpu6050.cpp:1551:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntFIFOBufferOverflowEnabled()':
+src/mpu6050.cpp:1570:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntI2CMasterEnabled()':
+src/mpu6050.cpp:1590:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntDataReadyEnabled()':
+src/mpu6050.cpp:1610:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getIntStatus()':
+src/mpu6050.cpp:1633:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntFreefallStatus()':
+src/mpu6050.cpp:1644:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntMotionStatus()':
+src/mpu6050.cpp:1655:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntZeroMotionStatus()':
+src/mpu6050.cpp:1666:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntFIFOBufferOverflowStatus()':
+src/mpu6050.cpp:1677:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntI2CMasterStatus()':
+src/mpu6050.cpp:1689:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntDataReadyStatus()':
+src/mpu6050.cpp:1700:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getAccelerationX()':
+src/mpu6050.cpp:1795:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getAccelerationY()':
+src/mpu6050.cpp:1804:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getAccelerationZ()':
+src/mpu6050.cpp:1813:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getTemperature()':
+src/mpu6050.cpp:1824:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getRotationX()':
+src/mpu6050.cpp:1874:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getRotationY()':
+src/mpu6050.cpp:1883:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getRotationZ()':
+src/mpu6050.cpp:1892:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getExternalSensorByte(int)':
+src/mpu6050.cpp:1973:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint16_t MPU6050::getExternalSensorWord(int)':
+src/mpu6050.cpp:1982:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint32_t MPU6050::getExternalSensorDWord(int)':
+src/mpu6050.cpp:1991:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getXNegMotionDetected()':
+src/mpu6050.cpp:2003:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getXPosMotionDetected()':
+src/mpu6050.cpp:2012:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getYNegMotionDetected()':
+src/mpu6050.cpp:2021:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getYPosMotionDetected()':
+src/mpu6050.cpp:2030:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getZNegMotionDetected()':
+src/mpu6050.cpp:2039:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getZPosMotionDetected()':
+src/mpu6050.cpp:2048:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getZeroMotionDetected()':
+src/mpu6050.cpp:2057:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getExternalShadowDelayEnabled()':
+src/mpu6050.cpp:2087:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSlaveDelayEnabled(uint8_t)':
+src/mpu6050.cpp:2120:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getAccelerometerPowerOnDelay()':
+src/mpu6050.cpp:2180:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getFreefallDetectionCounterDecrement()':
+src/mpu6050.cpp:2219:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getMotionDetectionCounterDecrement()':
+src/mpu6050.cpp:2255:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getFIFOEnabled()':
+src/mpu6050.cpp:2279:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getI2CMasterModeEnabled()':
+src/mpu6050.cpp:2303:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getSleepEnabled()':
+src/mpu6050.cpp:2378:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getWakeCycleEnabled()':
+src/mpu6050.cpp:2399:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getTempSensorEnabled()':
+src/mpu6050.cpp:2423:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getClockSource()':
+src/mpu6050.cpp:2447:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getWakeFrequency()':
+src/mpu6050.cpp:2510:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getStandbyXAccelEnabled()':
+src/mpu6050.cpp:2528:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getStandbyYAccelEnabled()':
+src/mpu6050.cpp:2547:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getStandbyZAccelEnabled()':
+src/mpu6050.cpp:2566:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getStandbyXGyroEnabled()':
+src/mpu6050.cpp:2585:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getStandbyYGyroEnabled()':
+src/mpu6050.cpp:2604:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getStandbyZGyroEnabled()':
+src/mpu6050.cpp:2623:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint16_t MPU6050::getFIFOCount()':
+src/mpu6050.cpp:2646:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getFIFOByte()':
+src/mpu6050.cpp:2678:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getDeviceID()':
+src/mpu6050.cpp:2702:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getOTPBankValid()':
+src/mpu6050.cpp:2723:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'int8_t MPU6050::getXGyroOffsetTC()':
+src/mpu6050.cpp:2730:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'int8_t MPU6050::getYGyroOffsetTC()':
+src/mpu6050.cpp:2740:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'int8_t MPU6050::getZGyroOffsetTC()':
+src/mpu6050.cpp:2750:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'int8_t MPU6050::getXFineGain()':
+src/mpu6050.cpp:2760:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'int8_t MPU6050::getYFineGain()':
+src/mpu6050.cpp:2770:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'int8_t MPU6050::getZFineGain()':
+src/mpu6050.cpp:2780:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getXAccelOffset()':
+src/mpu6050.cpp:2790:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getYAccelOffset()':
+src/mpu6050.cpp:2800:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getZAccelOffset()':
+src/mpu6050.cpp:2810:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getXGyroOffset()':
+src/mpu6050.cpp:2820:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getYGyroOffset()':
+src/mpu6050.cpp:2830:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'int16_t MPU6050::getZGyroOffset()':
+src/mpu6050.cpp:2840:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntPLLReadyEnabled()':
+src/mpu6050.cpp:2850:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntDMPEnabled()':
+src/mpu6050.cpp:2857:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getDMPInt5Status()':
+src/mpu6050.cpp:2867:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getDMPInt4Status()':
+src/mpu6050.cpp:2871:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getDMPInt3Status()':
+src/mpu6050.cpp:2875:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getDMPInt2Status()':
+src/mpu6050.cpp:2879:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getDMPInt1Status()':
+src/mpu6050.cpp:2883:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getDMPInt0Status()':
+src/mpu6050.cpp:2887:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntPLLReadyStatus()':
+src/mpu6050.cpp:2894:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getIntDMPStatus()':
+src/mpu6050.cpp:2898:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'bool MPU6050::getDMPEnabled()':
+src/mpu6050.cpp:2905:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::readMemoryByte()':
+src/mpu6050.cpp:2933:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getDMPConfig1()':
+src/mpu6050.cpp:3131:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+src/mpu6050.cpp: In member function 'uint8_t MPU6050::getDMPConfig2()':
+src/mpu6050.cpp:3141:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+make: *** [bin/mpu6050.o] Error 1
