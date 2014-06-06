@@ -9,9 +9,7 @@
 #include "mpu6050.h"
 
 
-#define rLED  PWM1_5 
-#define gLED  PWM1_7
-#define bLED  PWM1_6
+#define rLED  PF1
 
 
 int main(void)
@@ -31,24 +29,53 @@ int main(void)
     I2C_Enable(I2C0);
 
     //  PWM0/1
-    PWM_Init(PWM1, 1000);
-    PWM_Enable(rLED);
-    PWM_Enable(gLED);
-    PWM_Enable(bLED);
-    PWM_Set(rLED, 0);
-    PWM_Set(gLED, 0);
-    PWM_Set(bLED, 0);
+    Pin_Init(rLED);
+    Pin_Set(rLED, LOW);
    
+    // NVIC
+    IntMasterEnable();
+
     
     // Init devices
     MPU6050 mpu6050 = MPU6050(I2C0);
 
 
-    // NVIC
-    IntMasterEnable();
 
-    printf("\r-HI-\r\n\n");
+    // Initalize MPU6050
+    printf("Initialize MPU6050...\r\n");
+    mpu6050.initialize();
+    printf(" Initialized.\r\n");
 
-    while(1);
+    // Verify connection
+    printf("Testing I2C <> MPU6050 connection...\r\n");
+    if (mpu6050.testConnection() == false)
+    {
+        printf(" Failed.\r\n");
+        while(1);   // Block here
+    }
+    printf(" Success!\r\n");
+
+
+    while(1)
+    {
+        int16_t ax, ay, az;
+        int16_t gx, gy, gz;
+        
+        // Read Raw Values
+        mpu6050.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
+
+        // Print values
+        printf("Ax: %d\r\n", ax);
+        printf("Ay: %d\r\n", ay);
+        printf("Az: %d\r\n", az);
+        printf("Gx: %d\r\n", gx);
+        printf("Gy: %d\r\n", gy);
+        printf("Gz: %d\r\n\n", gz);
+
+        // Blink LED
+        Pin_Toggle(rLED);
+    }
 }
+
+
 
