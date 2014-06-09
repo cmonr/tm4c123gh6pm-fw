@@ -73,6 +73,7 @@ void I2C_SetMode( tI2C*, tI2C_Mode );
 
 bool I2C_Write( tI2C*, unsigned char, unsigned char);
 bool I2C_WriteBuff( tI2C*, unsigned char, unsigned char*, unsigned int );
+bool I2C_WriteBuffToReg( tI2C*, unsigned char, unsigned char, unsigned char*, unsigned int );
 
 bool I2C_Read( tI2C*, unsigned char, unsigned char* );
 bool I2C_ReadBuff( tI2C*, unsigned char, unsigned char*, unsigned int );

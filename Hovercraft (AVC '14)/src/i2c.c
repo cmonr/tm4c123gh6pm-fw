@@ -158,6 +158,7 @@ bool I2C_WriteBuffToReg(tI2C* i2c, unsigned char addr, unsigned char reg, unsign
     while(I2CMasterBusy(i2c -> base));
    
     return I2CMasterErr(i2c -> base) == I2C_MASTER_ERR_NONE;
+}
 
 bool I2C_Read(tI2C* i2c, unsigned char addr, unsigned char* data)
 {
@@ -220,29 +221,29 @@ bool I2C_ReadBuff(tI2C* i2c, unsigned char addr, unsigned char* data, unsigned i
 
 bool i2c_writeBit(tI2C* i2c, uint8_t addr, uint8_t reg, uint8_t bitOffset, uint8_t data)
 {
-    uint8_t b;
-    readByte(addr, reg, &b);
-    b = (data != 0) ? (b | (1 << bitNum)) : (b & ~(1 << bitNum));
-    return writeByte(addr, reg, b);
+    uint8_t b = 0;  // Initialize to silence compiler
+    i2c_readByte(i2c, addr, reg, &b);
+    b = (data != 0) ? (b | (1 << bitOffset)) : (b & ~(1 << bitOffset));
+    return i2c_writeByte(i2c, addr, reg, b);
 
 }
 
 bool i2c_writeBitW(tI2C* i2c, uint8_t addr, uint8_t reg, uint8_t bitOffset, uint16_t data)
 {
-    uint16_t w;
-    readWord(addr, reg, &w);
-    w = (data != 0) ? (w | (1 << bitNum)) : (w & ~(1 << bitNum));
-    return writeWord(addr, reg, w);
+    uint16_t w = 0; // Initialize to silence compiler
+    i2c_readWord(i2c, addr, reg, &w);
+    w = (data != 0) ? (w | (1 << bitOffset)) : (w & ~(1 << bitOffset));
+    return i2c_writeWord(i2c, addr, reg, w);
 }
 
 bool i2c_writeByte(tI2C* i2c, uint8_t addr, uint8_t reg, uint8_t data)
 {
-    return writeBytes(addr, reg, 1, &data);
+    return i2c_writeBytes(i2c, addr, reg, 1, &data);
 }
 
 bool i2c_writeWord(tI2C* i2c, uint8_t addr, uint8_t reg, uint16_t data)
 {
-    return writeWords(addr, reg, 1, &data);
+    return i2c_writeWords(i2c, addr, reg, 1, &data);
 }
 
 
@@ -256,13 +257,13 @@ bool i2c_writeBits(tI2C* i2c, uint8_t addr, uint8_t reg, uint8_t bitOffset, uint
     // 10100011 original & ~mask
     // 10101011 masked | value
     uint8_t b;
-    if (readByte(addr, reg, &b) != 0) {
+    if (i2c_readByte(i2c, addr, reg, &b) != 0) {
         uint8_t mask = ((1 << bitSize) - 1) << (bitOffset - bitSize + 1);
         data <<= (bitOffset - bitSize + 1); // shift data into correct position
         data &= mask; // zero all non-important bits in data
         b &= ~(mask); // zero all important bits in existing byte
         b |= data; // combine data with existing byte
-        return writeByte(addr, reg, b);
+        return i2c_writeByte(i2c, addr, reg, b);
     } else {
         return false;
     }
@@ -278,13 +279,13 @@ bool i2c_writeBitsW(tI2C* i2c, uint8_t addr, uint8_t reg, uint8_t bitOffset, uin
     // 1010001110010110 original & ~mask
     // 1010101110010110 masked | value
     uint16_t w;
-    if (readWord(addr, reg, &w) != 0) {
+    if (i2c_readWord(i2c, addr, reg, &w) != 0) {
         uint16_t mask = ((1 << bitSize) - 1) << (bitOffset - bitSize + 1);
         data <<= (bitOffset - bitSize + 1); // shift data into correct position
         data &= mask; // zero all non-important bits in data
         w &= ~(mask); // zero all important bits in existing word
         w |= data; // combine data with existing word
-        return writeWord(addr, reg, w);
+        return i2c_writeWord(i2c, addr, reg, w);
     } else {
         return false;
     }
@@ -292,44 +293,44 @@ bool i2c_writeBitsW(tI2C* i2c, uint8_t addr, uint8_t reg, uint8_t bitOffset, uin
 
 bool i2c_writeBytes(tI2C* i2c, uint8_t addr, uint8_t reg, uint8_t size, uint8_t* data)
 {
-    I2C_WriteBufToReg(i2c, addr, reg, data, size);
+    return I2C_WriteBuffToReg(i2c, addr, reg, data, size);
 }
 
 bool i2c_writeWords(tI2C* i2c, uint8_t addr, uint8_t reg, uint8_t size, uint16_t* data)
 {
     // TODO: Verify that this acutally works.
     //  Should work due to to the MCU being little endian
-    I2C_WriteBufToReg(i2c, addr, reg, (uint8_t*) data, size*2);
+    return I2C_WriteBuffToReg(i2c, addr, reg, (uint8_t*) data, size*2);
 }
 
 
 
 uint8_t i2c_readBit(tI2C* i2c, uint8_t addr, uint8_t reg, uint8_t bitOffset, uint8_t* data)
 {
-    uint8_t b;
-    uint8_t count = readByte(i2c, addr, reg, &b);
-    *data = b & (1 << bitNum);
+    uint8_t b = 0; // Initialize to silence compiler
+    uint8_t count = i2c_readByte(i2c, addr, reg, &b);
+    *data = b & (1 << bitOffset);
     return count;
 
 }
 
 uint8_t i2c_readBitW(tI2C* i2c, uint8_t addr, uint8_t reg, uint8_t bitOffset, uint16_t* data)
 {
-    uint16_t b;
-    uint8_t count = readWord(addr, reg, &b);
-    *data = b & (1 << bitNum);
+    uint16_t b = 0; // Initialize to silence compiler
+    uint8_t count = i2c_readWord(i2c, addr, reg, &b);
+    *data = b & (1 << bitOffset);
     return count;
 
 }
 
 uint8_t i2c_readByte(tI2C* i2c, uint8_t addr, uint8_t reg, uint8_t* data)
 {
-    return readBytes(addr, reg, 1, data);
+    return i2c_readBytes(i2c, addr, reg, 1, data);
 }
 
 uint8_t i2c_readWord(tI2C* i2c, uint8_t addr, uint8_t reg, uint16_t* data)
 {
-    return readWords(addr, reg, 1, data);
+    return i2c_readWords(i2c, addr, reg, 1, data);
 }
 
 
@@ -341,7 +342,7 @@ uint8_t i2c_readBits(tI2C* i2c, uint8_t addr, uint8_t reg, uint8_t bitOffset, ui
     //    010   masked
     //   -> 010 shifted
     uint8_t count, b;
-    if ((count = readByte(addr, reg, &b)) != 0) {
+    if ((count = i2c_readByte(i2c, addr, reg, &b)) != 0) {
         uint8_t mask = ((1 << bitSize) - 1) << (bitOffset - bitSize + 1);
         b &= mask;
         b >>= (bitOffset - bitSize + 1);
@@ -360,7 +361,7 @@ uint8_t i2c_readBitsW(tI2C* i2c, uint8_t addr, uint8_t reg, uint8_t bitOffset, u
     //           -> 010 shifted
     uint8_t count;
     uint16_t w;
-    if ((count = readWord(addr, reg, &w)) != 0) {
+    if ((count = i2c_readWord(i2c, addr, reg, &w)) != 0) {
         uint16_t mask = ((1 << bitSize) - 1) << (bitOffset - bitSize + 1);
         w &= mask;
         w >>= (bitOffset - bitSize + 1);
@@ -372,10 +373,16 @@ uint8_t i2c_readBitsW(tI2C* i2c, uint8_t addr, uint8_t reg, uint8_t bitOffset, u
 
 uint8_t i2c_readBytes(tI2C* i2c, uint8_t addr, uint8_t reg, uint8_t size, uint8_t* data)
 {
+    I2C_Write(i2c, addr, reg);
 
+    // TODO: If repeated start is needed, we need to fix it here...
+    if (I2C_ReadBuff(i2c, addr, data, size))
+        return size;
+    return 0;
 }
 
 uint8_t i2c_readWords(tI2C* i2c, uint8_t addr, uint8_t reg, uint8_t size, uint16_t* data)
 {
-
+    // TODO: Actually implement this...
+    return 0;
 }
