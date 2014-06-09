@@ -129,6 +129,35 @@ bool I2C_WriteBuff(tI2C* i2c, unsigned char addr, unsigned char* data, unsigned 
     return I2CMasterErr(i2c -> base) == I2C_MASTER_ERR_NONE;
 }
 
+bool I2C_WriteBuffToReg(tI2C* i2c, unsigned char addr, unsigned char reg, unsigned char* data, unsigned int len)
+{
+    // Send device sddress
+    I2CMasterSlaveAddrSet(i2c -> base, addr, false);
+   
+    // Send register
+    I2CMasterDataPut(i2c -> base, reg);
+    I2CMasterControl(i2c -> base, I2C_MASTER_CMD_BURST_SEND_START);
+    while(I2CMasterBusy(i2c -> base));
+    if (I2CMasterErr(i2c -> base) != I2C_MASTER_ERR_NONE)
+        return false;
+   
+    // Send data
+    while(len > 1){
+        I2CMasterDataPut(i2c -> base, *data);
+        I2CMasterControl(i2c -> base, I2C_MASTER_CMD_BURST_SEND_CONT);
+        while(I2CMasterBusy(i2c -> base));
+        if (I2CMasterErr(i2c -> base) != I2C_MASTER_ERR_NONE)
+            return false;
+        len--;
+        data++;
+    }
+
+    // Finish sending data
+    I2CMasterDataPut(i2c -> base, *data);
+    I2CMasterControl(i2c -> base, I2C_MASTER_CMD_BURST_SEND_FINISH);
+    while(I2CMasterBusy(i2c -> base));
+   
+    return I2CMasterErr(i2c -> base) == I2C_MASTER_ERR_NONE;
 
 bool I2C_Read(tI2C* i2c, unsigned char addr, unsigned char* data)
 {
@@ -263,12 +292,14 @@ bool i2c_writeBitsW(tI2C* i2c, uint8_t addr, uint8_t reg, uint8_t bitOffset, uin
 
 bool i2c_writeBytes(tI2C* i2c, uint8_t addr, uint8_t reg, uint8_t size, uint8_t* data)
 {
-
+    I2C_WriteBufToReg(i2c, addr, reg, data, size);
 }
 
 bool i2c_writeWords(tI2C* i2c, uint8_t addr, uint8_t reg, uint8_t size, uint16_t* data)
 {
-
+    // TODO: Verify that this acutally works.
+    //  Should work due to to the MCU being little endian
+    I2C_WriteBufToReg(i2c, addr, reg, (uint8_t*) data, size*2);
 }
 
 
