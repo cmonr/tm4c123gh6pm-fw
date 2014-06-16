@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdint.h>
+
+#include "driverlib/sysctl.h"
 
 #include "pin.h"
 #include "pwm.h"
@@ -15,7 +18,7 @@
 int main(void)
 {
     // Clock (80MHz)
-    SysCtlClockSet(SYSCTL_SYSDIV_2_5 | SYSCTL_USE_PLL | SYSCTL_XTAL_16MHZ | SYSCTL_OSC_MAIN);
+    SysCtlClockSet(SYSCTL_SYSDIV_5 | SYSCTL_USE_PLL | SYSCTL_XTAL_16MHZ | SYSCTL_OSC_MAIN);
 
 
     // Init peripherals
@@ -34,6 +37,7 @@ int main(void)
    
     // NVIC
     IntMasterEnable();
+
 
     
     // Init devices
@@ -55,25 +59,41 @@ int main(void)
     }
     printf(" Success!\r\n");
 
+    // Leave message on screen for 3s
+    SysCtlDelay(SysCtlClockGet());
 
+    // Clear screen
+    printf("%c[2J", 27);
+    
+    
     while(1)
     {
         int16_t ax, ay, az;
         int16_t gx, gy, gz;
-        
+       
+        // Move to top of terminal
+        printf("%c[0;0H", 27);
+    
+        // Clear screen
+        printf("%c[2J", 27);
+    
+
         // Read Raw Values
         mpu6050.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
 
         // Print values
-        printf("Ax: %d\r\n", ax);
-        printf("Ay: %d\r\n", ay);
-        printf("Az: %d\r\n", az);
+        printf("Ax: %f\r\n", ax / 2048.0);
+        printf("Ay: %f\r\n", ay / 2048.0);
+        printf("Az: %f\r\n", az / 2048.0);
         printf("Gx: %d\r\n", gx);
         printf("Gy: %d\r\n", gy);
         printf("Gz: %d\r\n\n", gz);
 
         // Blink LED
         Pin_Toggle(rLED);
+
+        // Delay 100ms
+        SysCtlDelay(SysCtlClockGet() / 3 / 10);
     }
 }
 
