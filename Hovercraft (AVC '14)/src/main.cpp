@@ -74,19 +74,23 @@ int main(void)
         while(1);
         break;
     }
+
+    mpu6050.setXGyroOffset(220);
+    mpu6050.setYGyroOffset(76);
+    mpu6050.setZGyroOffset(-85);
+    mpu6050.setZAccelOffset(1788);
     
     printf(" Enabling DMP...\r\n");
     mpu6050.setDMPEnabled(true);
     printf(" DMP ready!\r\n");
 
 
-    // Leave message on screen for 3s
-    SysCtlDelay(SysCtlClockGet());
+    // Leave message on screen for 10s
+    SysCtlDelay(SysCtlClockGet() / 3 * 10);
 
     while(1)
     {
         Quaternion q;  
-        float euler[3];
         uint8_t fifoBuffer[64];
 
         if (mpu6050.getIntStatus() & 0x02)
