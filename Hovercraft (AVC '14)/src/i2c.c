@@ -88,6 +88,16 @@ bool I2C_Write(tI2C* i2c, unsigned char addr, unsigned char data)
     return I2CMasterErr(i2c -> base) == I2C_MASTER_ERR_NONE;
 }
 
+bool I2C_WriteNoStop(tI2C* i2c, unsigned char addr, unsigned char data)
+{
+    I2CMasterSlaveAddrSet(i2c -> base, addr, false);
+    I2CMasterDataPut(i2c -> base, data);
+    I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_SEND_START);
+    while(I2CMasterBusy(I2C0_BASE));
+
+    return I2CMasterErr(i2c -> base) == I2C_MASTER_ERR_NONE;
+}
+
 bool I2C_WriteBuff(tI2C* i2c, unsigned char addr, unsigned char* data, unsigned int len)
 {
     I2CMasterSlaveAddrSet(i2c -> base, addr, false);
@@ -129,9 +139,40 @@ bool I2C_WriteBuff(tI2C* i2c, unsigned char addr, unsigned char* data, unsigned 
     return I2CMasterErr(i2c -> base) == I2C_MASTER_ERR_NONE;
 }
 
+bool I2C_WriteBuffNoStop(tI2C* i2c, unsigned char addr, unsigned char* data, unsigned int len)
+{
+    I2CMasterSlaveAddrSet(i2c -> base, addr, false);
+    I2CMasterDataPut(i2c -> base, *data);
+    
+    
+    // Start sending consecutive data
+    I2CMasterControl(i2c -> base, I2C_MASTER_CMD_BURST_SEND_START);
+    while(I2CMasterBusy(i2c -> base));
+    if (I2CMasterErr(i2c -> base) != I2C_MASTER_ERR_NONE)
+        return false;
+    len--;
+    data++;
+
+    
+    // Continue sending consecutive data
+    while(len > 0){
+        I2CMasterDataPut(i2c -> base, *data);
+        I2CMasterControl(i2c -> base, I2C_MASTER_CMD_BURST_SEND_CONT);
+        while(I2CMasterBusy(i2c -> base));
+        if (I2CMasterErr(i2c -> base) != I2C_MASTER_ERR_NONE)
+            return false;
+        len--;
+        data++;
+    }
+   
+    return I2CMasterErr(i2c -> base) == I2C_MASTER_ERR_NONE;
+}
+
 bool I2C_WriteBuffToReg(tI2C* i2c, unsigned char addr, unsigned char reg, unsigned char* data, unsigned int len)
 {
-    while(len == 0);    // Halt program if len == 0
+    // No data to send. Success!
+    if(len == 0)
+        return true;
     
     // Send device sddress
     I2CMasterSlaveAddrSet(i2c -> base, addr, false);
@@ -379,7 +420,7 @@ uint8_t i2c_readBitsW(tI2C* i2c, uint8_t addr, uint8_t reg, uint8_t bitOffset, u
 
 uint8_t i2c_readBytes(tI2C* i2c, uint8_t addr, uint8_t reg, uint8_t size, uint8_t* data)
 {
-    I2C_Write(i2c, addr, reg);
+    I2C_WriteNoStop(i2c, addr, reg);
 
     // TODO: If repeated start is needed, we need to fix it here...
     if (I2C_ReadBuff(i2c, addr, data, size))
