@@ -38,6 +38,7 @@ THE SOFTWARE.
 #include <string.h>
 
 #include "mpu6050.h"
+#include "MPU6050_6Axis_MotionApps.h"
 
 /** Default constructor, uses default I2C address.
  * @see MPU6050_DEFAULT_ADDRESS
@@ -2645,7 +2646,7 @@ void MPU6050::setStandbyZGyroEnabled(bool enabled) {
  */
 uint16_t MPU6050::getFIFOCount() {
     i2c_readBytes(_i2c, _addr, MPU6050_RA_FIFO_COUNTH, 2, _buffer);
-    return (((uint16_t)_buffer[0]) << 8) | _buffer[1];
+    return (_buffer[0] << 8) | _buffer[1];
 }
 
 // FIFO_R_W register

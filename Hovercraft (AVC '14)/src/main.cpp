@@ -14,7 +14,6 @@
 
 #define rLED  PF1
 
-
 int main(void)
 {
     // Clock (80MHz)
@@ -40,7 +39,7 @@ int main(void)
 
 
     
-    // Init devices
+    // Initialize Drivers
     MPU6050 mpu6050 = MPU6050(I2C0);
 
 
@@ -50,7 +49,7 @@ int main(void)
     mpu6050.initialize();
     printf(" Initialized.\r\n");
 
-    // Verify connection
+    //  Verify connection
     printf("Testing I2C <> MPU6050 connection...\r\n");
     if (mpu6050.testConnection() == false)
     {
@@ -59,41 +58,65 @@ int main(void)
     }
     printf(" Success!\r\n");
 
+    //  Initialize DMP
+    printf(" Initializing DMP...\r\n");
+
+    switch(mpu6050.dmpInitialize())
+    {
+    case 0:
+        break;
+    case 1:
+        printf("  DMP Memory Load Failed.\r\n");
+        while(1);
+        break;
+    case 2:
+        printf("  DMP Config Updates Failed.");
+        while(1);
+        break;
+    }
+    
+    printf(" Enabling DMP...\r\n");
+    mpu6050.setDMPEnabled(true);
+    printf(" DMP ready!\r\n");
+
+
     // Leave message on screen for 3s
     SysCtlDelay(SysCtlClockGet());
 
-    // Clear screen
-    printf("%c[2J", 27);
-    
-    
     while(1)
     {
-        int16_t ax, ay, az;
-        int16_t gx, gy, gz;
-       
-        // Move to top of terminal
-        printf("%c[0;0H", 27);
-    
-        // Clear screen
-        printf("%c[2J", 27);
-    
+        Quaternion q;  
+        float euler[3];
+        uint8_t fifoBuffer[64];
 
-        // Read Raw Values
-        mpu6050.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
+        if (mpu6050.getIntStatus() & 0x02)
+        {
+            // Move to top of terminal
+            printf("%c[0;0H", 27);
+        
+            // Clear screen
+            printf("%c[2J", 27);
+        
 
-        // Print values
-        printf("Ax: %f\r\n", ax / 2048.0);
-        printf("Ay: %f\r\n", ay / 2048.0);
-        printf("Az: %f\r\n", az / 2048.0);
-        printf("Gx: %d\r\n", gx);
-        printf("Gy: %d\r\n", gy);
-        printf("Gz: %d\r\n\n", gz);
+            // Read Quaternion
+            while(mpu6050.dmpPacketAvailable() == false);
+            mpu6050.getFIFOBytes(fifoBuffer, mpu6050.dmpGetFIFOPacketSize());
+            mpu6050.dmpGetQuaternion(&q, fifoBuffer);
 
-        // Blink LED
-        Pin_Toggle(rLED);
+            // Print values
+            printf("Quaternion:\r\n");
+            printf("w: %f\r\n", q.w);
+            printf("x: %f\r\n", q.x);
+            printf("y: %f\r\n", q.y);
+            printf("z: %f\r\n", q.z);
 
-        // Delay 100ms
-        SysCtlDelay(SysCtlClockGet() / 3 / 10);
+
+            // Blink LED
+            Pin_Toggle(rLED);
+
+            // Delay 100ms
+            SysCtlDelay(SysCtlClockGet() / 3 / 10);
+        }
     }
 }
 

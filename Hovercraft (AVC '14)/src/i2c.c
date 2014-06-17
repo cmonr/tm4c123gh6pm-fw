@@ -131,6 +131,8 @@ bool I2C_WriteBuff(tI2C* i2c, unsigned char addr, unsigned char* data, unsigned 
 
 bool I2C_WriteBuffToReg(tI2C* i2c, unsigned char addr, unsigned char reg, unsigned char* data, unsigned int len)
 {
+    while(len == 0);    // Halt program if len == 0
+    
     // Send device sddress
     I2CMasterSlaveAddrSet(i2c -> base, addr, false);
    
@@ -172,6 +174,10 @@ bool I2C_Read(tI2C* i2c, unsigned char addr, unsigned char* data)
 
 bool I2C_ReadBuff(tI2C* i2c, unsigned char addr, unsigned char* data, unsigned int len)
 {
+    //while(len == 0);    // Halt program if len == 0
+    if (len == 0)
+        return false;    // For now...
+    
     I2CMasterSlaveAddrSet(i2c -> base, addr, true);
     if (len == 1)
     {
