@@ -595,17 +595,17 @@ void UART1_RX_IRQ()
     // Read cahracter
     unsigned char data = UART_ReadChar(UART1);
 
-    buff[buffptr] = data;
-    buffptr++;
+    buff[buffptr++] = data;
 
     if (data == CMD_DELIM)
     {
         // Simple loop correction. No command should every be > 23 characters
-        if (buffptr > 900)
+        if (buffptr > 1000)
         {
             buffptr = 0;
         }
 
+        // Echo new line to USB
         UART_WriteChar(UART0, '\r');
         UART_WriteChar(UART0, '\n');
     }
@@ -619,9 +619,14 @@ void UART1_RX_IRQ()
 
 int main(void)
 {
+    volatile uint32_t actualFreq;
+    
     // Clock (80MHz)
-    SysCtlClockSet(SYSCTL_SYSDIV_5 | SYSCTL_USE_PLL | SYSCTL_XTAL_16MHZ | SYSCTL_OSC_MAIN);
-
+    SysCtlClockSet(SYSCTL_SYSDIV_2_5 | SYSCTL_USE_PLL | SYSCTL_XTAL_16MHZ | SYSCTL_OSC_MAIN);
+    
+    // TODO: Need to actualyl confirm that the clock is at 80MHz
+    actualFreq = SysCtlClockGet();
+    while(1);
 
     // Init peripherals
     //  UART0/1
@@ -657,60 +662,42 @@ int main(void)
 
     // As soon as UART1 IRW is enabled, a character is
     //  incorrectly received. Correct the issue by simply
-    //   resetting the buffer pointer.
+    //  resetting the buffer pointer.
     buffptr = 0;
-
-
-
-    /*
-    // Power On Self Test
-    //printf("POST Started");
-
-    //  LEDs
-    ledTest(rLED);    
-    ledTest(gLED);    
-    ledTest(bLED);    
-
-    //  Motors
-    //   First enable motors
-    pca9557.set(P3, HIGH);
-    motorTest(&m0);
-    motorTest(&m1);
-    motorTest(&m2);
-    motorTest(&m3);
-    pca9557.set(P3, LOW);
-
-    //  Servos
-    servoTest(&s0);
-    servoTest(&s1);
-    servoTest(&s2);
-    servoTest(&s3);
-    servoTest(&s4);
-    servoTest(&s5);
-
-    //printf("\rPOST Completed\r\n\n");*/
-
-    cmd = buff;
-    cmdEnd = buff;
+    
+    
+    // Start parsing commands as they become available
+    cmdHead = buff;
+    cmdTail = buff;
 
     while(1)
     {
-        // Find end of new cmd 
-        do 
-        {
-            cmdEnd = (unsigned char*) memchr(cmd, ';', 32);
-        }
-        while (cmdEnd == 0);
+        // Wait until buffPtr moves
+        while(cmdTail == buff[buffPtr]);
+        //wfi();
         
-        // Execute command
-        parseCmd();
-
-        // Reset cmd to head of buffer
-        if (cmd > buff + 900)
-            cmd = buff;
-
-        // Increment cmd pointer
-        cmd = cmdEnd + 1;
+        // Increment pointer
+        cmdTail++;
+        
+        // If command is complete
+        if (*cmdTail == CMD_DELIM)
+        {
+            // Execute command
+            parseCmd();
+            
+            // Update pointers
+            //  Check if we need to loop back
+            if (cmdTail > buff + 1000)
+            {
+                cmdHead = buff;
+                cmdTail = buff;
+            }
+            else
+            {
+                cmdHead = cmdTail + 1;
+                cmdTail = cmdhead;
+            }
+        }
     }
 }
 
