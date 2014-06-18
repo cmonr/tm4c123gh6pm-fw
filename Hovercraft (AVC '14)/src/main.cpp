@@ -20,9 +20,6 @@ DRV8800* motors[4] = {&m0, &m1, &m2, &m3};
 Servo* servos[6] = {&s0, &s1, &s2, &s3, &s4, &s5};
 
 
-unsigned char buff[1024];
-unsigned char buffptr = 0;
-
 unsigned char* cmdHead;
 unsigned char* cmdTail;
 
@@ -590,19 +587,30 @@ void parseCmd()
     }   
 }
 
+
+unsigned char u1Buf[1024];
+unsigned char* u1BufPtr = u1Buf;
+
 void UART1_RX_IRQ()
 {
     // Read cahracter
     unsigned char data = UART_ReadChar(UART1);
 
-    buff[buffptr++] = data;
+    // Put data into buffer
+    *u1BufPtr = data;
+    u1BufPtr++;
+
 
     if (data == CMD_DELIM)
     {
-        // Simple loop correction. No command should every be > 23 characters
-        if (buffptr > 1000)
+        // Simple buffer mantenance
+        //  Don't use Ring Buffer, since we want string functions to
+        //  be able to act on the buffer instead of copying it every
+        //  time, which is time consuming
+        if (u1BufPtr > u1Buf + 1000)
         {
-            buffptr = 0;
+            // Reset pointer to beginning of buffer
+            u1BufPtr = u1Buf;
         }
 
         // Echo new line to USB
@@ -663,18 +671,19 @@ int main(void)
     // As soon as UART1 IRW is enabled, a character is
     //  incorrectly received. Correct the issue by simply
     //  resetting the buffer pointer.
-    buffptr = 0;
+    //  Might be a bug in UART implementation of PAL
+    u1BufPtr = u1Buf;
     
     
     // Start parsing commands as they become available
-    cmdHead = buff;
-    cmdTail = buff;
+    cmdHead = u1Buf;
+    cmdTail = u1Buf;
 
     while(1)
     {
         // Wait until buffPtr moves
+        //  Might be possible to use wfi() here
         while(cmdTail == buff[buffPtr]);
-        //wfi();
         
         // Increment pointer
         cmdTail++;
@@ -690,13 +699,15 @@ int main(void)
             
             // Update pointers
             //  Check if we need to loop back
-            if (cmdTail > buff + 1000)
+            if (cmdTail > u1Buf + 1000)
             {
-                cmdHead = buff;
-                cmdTail = buff;
+                // Reset pointers to beginning of buffer
+                cmdHead = u1Buf;
+                cmdTail = u1Buf;
             }
             else
             {
+                // Upadte pointers
                 cmdHead = cmdTail + 1;
                 cmdTail = cmdhead;
             }
