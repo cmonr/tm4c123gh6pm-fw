@@ -11,7 +11,7 @@
 #define PRINTF_UART_TX UART1
 #define PRINTF_UART_RX UART1
 
-#define SILENT
+//#define SILENT
 
 char *heap_end = 0;
 
