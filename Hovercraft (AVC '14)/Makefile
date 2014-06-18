@@ -60,7 +60,7 @@ CFLAGS     += -mthumb
 CFLAGS     += -mcpu=cortex-m4
 CFLAGS     += -mfloat-abi=$(FPU)
 CFLAGS     += -mfpu=fpv4-sp-d16
-CFLAGS     += -Os
+#CFLAGS     += -Os
 CFLAGS     += -ffunction-sections
 CFLAGS     += -fdata-sections
 CFLAGS     += -MD

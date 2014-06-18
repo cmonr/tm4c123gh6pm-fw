@@ -8,7 +8,7 @@
 
 #include "uart.h"
 
-#define PRINTF_UART_TX UART1
+#define PRINTF_UART_TX UART0
 #define PRINTF_UART_RX UART1
 
 //#define SILENT

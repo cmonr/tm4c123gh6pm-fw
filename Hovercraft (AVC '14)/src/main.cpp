@@ -20,8 +20,11 @@ DRV8800* motors[4] = {&m0, &m1, &m2, &m3};
 Servo* servos[6] = {&s0, &s1, &s2, &s3, &s4, &s5};
 
 
+unsigned char u1Buf[1024];
+unsigned char* u1BufPtr;
+
 unsigned char* cmdHead;
-unsigned char* cmdTail;
+volatile unsigned char* cmdTail;
 
 
 void parseCmd()
@@ -587,10 +590,6 @@ void parseCmd()
     }   
 }
 
-
-unsigned char u1Buf[1024];
-unsigned char* u1BufPtr = u1Buf;
-
 void UART1_RX_IRQ()
 {
     // Read cahracter
@@ -613,29 +612,26 @@ void UART1_RX_IRQ()
             u1BufPtr = u1Buf;
         }
 
+        // Disabling local echo due to non-fifo U0TX implementation
+        // Blocks, which drops data
+
         // Echo new line to USB
-        UART_WriteChar(UART0, '\r');
-        UART_WriteChar(UART0, '\n');
+        //UART_WriteChar(UART0, ';');
     }
     else
     {
         // Echo to USB 
-        UART_WriteChar(UART0, data);
+        //UART_WriteChar(UART0, data);
     }
 }
 
 
 int main(void)
 {
-    volatile uint32_t actualFreq;
+    // Clock (50MHz)
+    SysCtlClockSet(SYSCTL_SYSDIV_4 | SYSCTL_USE_PLL | SYSCTL_XTAL_16MHZ | SYSCTL_OSC_MAIN);
     
-    // Clock (80MHz)
-    SysCtlClockSet(SYSCTL_SYSDIV_2_5 | SYSCTL_USE_PLL | SYSCTL_XTAL_16MHZ | SYSCTL_OSC_MAIN);
     
-    // TODO: Need to actualyl confirm that the clock is at 80MHz
-    actualFreq = SysCtlClockGet();
-    while(1);
-
     // Init peripherals
     //  UART0/1
     UART_Init(UART0);
@@ -646,6 +642,7 @@ int main(void)
     UART_IntEnable(UART1, UART_RX_IRQ);
     UART_Enable(UART1);
     setbuf(stdout, NULL);
+    u1BufPtr = u1Buf;
 
     //  I2C0
     I2C_Init(I2C0);
@@ -673,7 +670,8 @@ int main(void)
     //  resetting the buffer pointer.
     //  Might be a bug in UART implementation of PAL
     u1BufPtr = u1Buf;
-    
+   
+
     
     // Start parsing commands as they become available
     cmdHead = u1Buf;
@@ -683,14 +681,20 @@ int main(void)
     {
         // Wait until buffPtr moves
         //  Might be possible to use wfi() here
-        while(cmdTail == buff[buffPtr]);
+        if (cmdTail == u1BufPtr)
+            continue;
+       
+        // This is apparently needed, otherwise everything doesn't work...
+        printf("%c%d", *cmdTail, *cmdTail == ';');
         
         // Increment pointer
         cmdTail++;
-        
+
         // If command is complete
-        if (*cmdTail == CMD_DELIM)
+        if (*cmdTail == ';')
         {
+            printf("\r\n");
+
             // Fake the end of a string
             *cmdTail = 0;
             
@@ -708,8 +712,8 @@ int main(void)
             else
             {
                 // Upadte pointers
-                cmdHead = cmdTail + 1;
-                cmdTail = cmdhead;
+                cmdHead = ((unsigned char*) cmdTail) + 1;
+                cmdTail = cmdHead;
             }
         }
     }

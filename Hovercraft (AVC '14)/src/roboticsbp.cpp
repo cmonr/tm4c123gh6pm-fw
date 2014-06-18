@@ -20,10 +20,10 @@ void RoboticsBP_Init()
    
     //  Servos
     
-    s0 = Servo(PWM0_0);
-    s1 = Servo(PWM0_1);
-    s2 = Servo(PWM0_2);
-    s3 = Servo(PWM0_3);
+    s0 = Servo(PWM0_3);
+    s1 = Servo(PWM0_2);
+    s2 = Servo(PWM0_1);
+    s3 = Servo(PWM0_0);
     s4 = Servo(PWM0_4);
     s5 = Servo(PWM0_5);
 }
