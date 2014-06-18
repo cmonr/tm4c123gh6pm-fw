@@ -23,8 +23,8 @@ Servo* servos[6] = {&s0, &s1, &s2, &s3, &s4, &s5};
 unsigned char buff[1024];
 unsigned char buffptr = 0;
 
-unsigned char* cmd;
-unsigned char* cmdEnd;
+unsigned char* cmdHead;
+unsigned char* cmdTail;
 
 
 void parseCmd()
@@ -61,17 +61,17 @@ void parseCmd()
     */
    
     // Determine object to do command on
-    switch(cmd[0])
+    switch(cmdHead[0])
     {
         // 
         // LED Commands
         // 
         case 'l':
         case 'L':
-            switch(cmd[1])
+            switch(cmdHead[1])
             {
                 case '*':           // Command all LEDs
-                    switch(cmd[2])
+                    switch(cmdHead[2])
                     {
                         case 'e':   // Enable LEDs
                         case 'E':
@@ -97,12 +97,12 @@ void parseCmd()
 
                         case '=':   // Set LEDs
                              // Parse  value
-                            value = strtof(reinterpret_cast<const char*>(&cmd[3]), NULL); 
+                            value = strtof(reinterpret_cast<const char*>(&cmdHead[3]), NULL); 
 
                             // Check value range
                             if (value > 1 || value < 0 )
                             {
-                                //printf("Invalid led value: %s\r\n", cmd);
+                                //printf("Invalid led value: %s\r\n", cmdHead);
                                 break;
                             }
                             
@@ -116,25 +116,25 @@ void parseCmd()
 
 
                         //default:
-                            //printf("Invalid LED command: %s\r\n", cmd);
+                            //printf("Invalid LED command: %s\r\n", cmdHead);
                             
                     }
                     break;
                 case 'r':
                 case 'g':
                 case 'b':
-                    switch(cmd[2])
+                    switch(cmdHead[2])
                     {
                         case 'e':   // Enable LED
                         case 'E':
-                            if (cmd[1] == 'r')
+                            if (cmdHead[1] == 'r')
                             {
                                 PWM_Enable(rLED);
                                 PWM_Set(rLED, 0);
 
                                 //printf(" Red LED enabled\r\n Red LED set to  0%%\r\n");
                             }
-                            else if (cmd[1] == 'g')
+                            else if (cmdHead[1] == 'g')
                             {
                                 PWM_Enable(gLED);
                                 PWM_Set(gLED, 0);
@@ -153,13 +153,13 @@ void parseCmd()
 
                         case 'd':   // Disable LED
                         case 'D':
-                            if (cmd[1] == 'r')
+                            if (cmdHead[1] == 'r')
                             {
                                 PWM_Disable(rLED);
 
                                 //printf(" Red LED disabled\r\n");
                             }
-                            else if (cmd[1] == 'g')
+                            else if (cmdHead[1] == 'g')
                             {
                                 PWM_Disable(gLED);
                                
@@ -176,23 +176,23 @@ void parseCmd()
 
                         case '=':   // Set LED
                              // Parse  value
-                            value = strtof(reinterpret_cast<const char*>(&cmd[3]), NULL); 
+                            value = strtof(reinterpret_cast<const char*>(&cmdHead[3]), NULL); 
 
                             // Check value range
                             if (value > 1 || value < 0 )
                             {
-                                //printf("Invalid led value: %s\r\n", cmd);
+                                //printf("Invalid led value: %s\r\n", cmdHead);
                                 break;
                             }
                             
                             // Set LED
-                            if (cmd[1] == 'r')
+                            if (cmdHead[1] == 'r')
                             {
                                 PWM_Set(rLED, value);
 
                                 //printf(" Red LED set to % 2d%%\r\n", (unsigned char) (value * 100));
                             }
-                            else if (cmd[1] == 'g')
+                            else if (cmdHead[1] == 'g')
                             {
                                 PWM_Set(gLED, value);
                                
@@ -209,13 +209,13 @@ void parseCmd()
 
 
                         //default:
-                            //printf("Invalid LED command: %s\r\n", cmd);
+                            //printf("Invalid LED command: %s\r\n", cmdHead);
                             
                     }
 
                     break;
                 //default:
-                    //printf("Invalid LED index: %s\r\n", cmd);
+                    //printf("Invalid LED index: %s\r\n", cmdHead);
 
             }
             break;
@@ -226,10 +226,10 @@ void parseCmd()
         //
         case 'm':
         case 'M':
-            switch(cmd[1])
+            switch(cmdHead[1])
             {
                 case '*':           // Command all Motors
-                    switch(cmd[2])
+                    switch(cmdHead[2])
                     {
                         case 'e':   // Enable Motors
                         case 'E':
@@ -255,19 +255,19 @@ void parseCmd()
                         case 't':   // Throttle Motors
                         case 'T':
                             // Parse throttle value
-                            value = strtof(reinterpret_cast<const char*>(&cmd[4]), NULL); 
+                            value = strtof(reinterpret_cast<const char*>(&cmdHead[4]), NULL); 
                             /*
 
-                            if (sscanf(&cmd[3], "=%f", &value) != 1)
+                            if (sscanf(&cmdHead[3], "=%f", &value) != 1)
                             {
-                                //printf("Invalid motor trottle value: %s\r\n", cmd);
+                                //printf("Invalid motor trottle value: %s\r\n", cmdHead);
                                 break;
                             }*/
 
                             // Check throttle value range
                             if (value > 1 || value < 0)
                             { 
-                                //printf("Invalid motor throttle value: %s\r\n", cmd);
+                                //printf("Invalid motor throttle value: %s\r\n", cmdHead);
                                 break;
                             }
                             
@@ -282,18 +282,18 @@ void parseCmd()
 
                         case '=':   // Set Motors
                             // Parse set value
-                            value = strtof(reinterpret_cast<const char*>(&cmd[3]), NULL); 
+                            value = strtof(reinterpret_cast<const char*>(&cmdHead[3]), NULL); 
                             /* 
-                            if (sscanf(&cmd[2], "=%f", &value) != 1)
+                            if (sscanf(&cmdHead[2], "=%f", &value) != 1)
                             {
-                                //printf("Invalid motor value: %s\r\n", cmd);
+                                //printf("Invalid motor value: %s\r\n", cmdHead);
                                 break;
                             }*/
 
                             // Check set value range
                             if (value > 1 || value < -1)
                             {
-                                //printf("Invalid motor value: %s\r\n", cmd);
+                                //printf("Invalid motor value: %s\r\n", cmdHead);
                                 break;
                             } 
                             
@@ -307,7 +307,7 @@ void parseCmd()
                             break;
 
                         //default:
-                            //printf("Invalid motor command: %s\r\n", cmd);
+                            //printf("Invalid motor command: %s\r\n", cmdHead);
                     }
                     break; 
 
@@ -315,9 +315,9 @@ void parseCmd()
                 case '1':
                 case '2':
                 case '3':
-                    ndx = cmd[1] - '0';
+                    ndx = cmdHead[1] - '0';
 
-                    switch(cmd[2])
+                    switch(cmdHead[2])
                     { 
                         case 'e':   // Enable Motor
                         case 'E':
@@ -342,18 +342,18 @@ void parseCmd()
                         case 't':   // Throttle Motor(s)
                         case 'T':
                             // Parse throttle value
-                            value = strtof(reinterpret_cast<const char*>(&cmd[4]), NULL); 
+                            value = strtof(reinterpret_cast<const char*>(&cmdHead[4]), NULL); 
                             /*
-                            if (sscanf(&cmd[3], "=%f", &value) != 1)
+                            if (sscanf(&cmdHead[3], "=%f", &value) != 1)
                             {
-                                //printf("Invalid motor trottle value: %s\r\n", cmd);
+                                //printf("Invalid motor trottle value: %s\r\n", cmdHead);
                                 break;
                             }*/
 
                             // Check throttle value range
                             if (value > 1 || value < 0)
                             {
-                                //printf("Invalid motor throttle value: %s\r\n", cmd);
+                                //printf("Invalid motor throttle value: %s\r\n", cmdHead);
                                 break;
                             }
                             
@@ -365,18 +365,18 @@ void parseCmd()
 
                         case '=':   // Set Motor
                             // Parse throttle value
-                            value = strtof(reinterpret_cast<const char*>(&cmd[3]), NULL); 
+                            value = strtof(reinterpret_cast<const char*>(&cmdHead[3]), NULL); 
                             /*
-                            if (sscanf(&cmd[2], "=%f", &value) != 1)
+                            if (sscanf(&cmdHead[2], "=%f", &value) != 1)
                             {
-                                //printf("Invalid motor value: %s\r\n", cmd);
+                                //printf("Invalid motor value: %s\r\n", cmdHead);
                                 break;
                             }*/
 
                             // Check throttle value range
                             if (value > 1 || value < -1)
                             {
-                                //printf("Invalid motor value: %s\r\n", cmd);
+                                //printf("Invalid motor value: %s\r\n", cmdHead);
                                 break;
                             }
                             
@@ -387,12 +387,12 @@ void parseCmd()
                             break;
 
                         //default:
-                            //printf("Invalid motor command: %s\r\n", cmd);
+                            //printf("Invalid motor command: %s\r\n", cmdHead);
                     }
                     break;
 
                 //default:
-                    //printf("Invalid Motor index: %s\r\n", cmd);
+                    //printf("Invalid Motor index: %s\r\n", cmdHead);
             }
             break;
 
@@ -402,10 +402,10 @@ void parseCmd()
         //
         case 's':
         case 'S':
-            switch(cmd[1])
+            switch(cmdHead[1])
             {
                 case '*':           // Command all Servos
-                    switch(cmd[2])
+                    switch(cmdHead[2])
                     {
                         case 'e':   // Enable Servos
                         case 'E':
@@ -446,20 +446,20 @@ void parseCmd()
                             char* endPtr;
                             float max;
 
-                            value = strtof(reinterpret_cast<const char*>(&cmd[4]), &endPtr);
+                            value = strtof(reinterpret_cast<const char*>(&cmdHead[4]), &endPtr);
                             max = strtof(reinterpret_cast<const char*>(endPtr), NULL);
 
                             // Check min limit range
                             if (value > 1 || value < 0)
                             {
-                                //printf("Invalid servo min limit: %s\r\n", cmd);
+                                //printf("Invalid servo min limit: %s\r\n", cmdHead);
                                 break;
                             }
                             
                             // Check max limit range
                             if (max > 1 || max < 0)
                             {
-                                //printf("Invalid servo max limit: %s\r\n", cmd);
+                                //printf("Invalid servo max limit: %s\r\n", cmdHead);
                                 break;
                             }
 
@@ -476,12 +476,12 @@ void parseCmd()
 
                         case '=':   // Set Servos
                             // Parse set value
-                            value = strtof(reinterpret_cast<const char*>(&cmd[4]), NULL);
+                            value = strtof(reinterpret_cast<const char*>(&cmdHead[4]), NULL);
 
                             // Check set value range
                             if (value > 1 || value < 0)
                             {
-                                //printf("Invalid motor throttle value: %s\r\n", cmd);
+                                //printf("Invalid motor throttle value: %s\r\n", cmdHead);
                                 break;
                             }
 
@@ -497,7 +497,7 @@ void parseCmd()
                             break;
 
                         //default:
-                            //printf("Invalid servo command: %s\r\n", cmd);
+                            //printf("Invalid servo command: %s\r\n", cmdHead);
                     }
                     break;
 
@@ -507,9 +507,9 @@ void parseCmd()
                 case '3':
                 case '4':
                 case '5':
-                    ndx = cmd[1] - '0';
+                    ndx = cmdHead[1] - '0';
 
-                    switch(cmd[2])
+                    switch(cmdHead[2])
                     {
                         case 'e':   // Enable Servo
                         case 'E':
@@ -535,20 +535,20 @@ void parseCmd()
                             char* endPtr;
                             float max;
 
-                            value = strtof(reinterpret_cast<const char*>(&cmd[3]), &endPtr);
+                            value = strtof(reinterpret_cast<const char*>(&cmdHead[3]), &endPtr);
                             max = strtof(reinterpret_cast<const char*>(endPtr), NULL);
 
                             // Check min limit range
                             if (value > 1 || value < 0)
                             {
-                                //printf("Invalid servo min limit: %s\r\n", cmd);
+                                //printf("Invalid servo min limit: %s\r\n", cmdHead);
                                 break;
                             }
                             
                             // Check max limit range
                             if (max > 1 || max < 0)
                             {
-                                //printf("Invalid servo max limit: %s\r\n", cmd);
+                                //printf("Invalid servo max limit: %s\r\n", cmdHead);
                                 break;
                             }
 
@@ -560,12 +560,12 @@ void parseCmd()
 
                         case '=':   // Set Servos
                             // Parse set value
-                            value = strtof(reinterpret_cast<const char*>(&cmd[3]), NULL);
+                            value = strtof(reinterpret_cast<const char*>(&cmdHead[3]), NULL);
 
                             // Check set value range
                             if (value > 1 || value < 0)
                             {
-                                //printf("Invalid motor throttle value: %s\r\n", cmd);
+                                //printf("Invalid motor throttle value: %s\r\n", cmdHead);
                                 break;
                             }
 
@@ -576,17 +576,17 @@ void parseCmd()
                             break;
 
                         //default:
-                            //printf("Invalid servo command: %s\r\n", cmd);
+                            //printf("Invalid servo command: %s\r\n", cmdHead);
                     }
                     break;
 
                 //default:
-                    //printf("Invalid Servo index: %s\r\n", cmd);
+                    //printf("Invalid Servo index: %s\r\n", cmdHead);
             }
             break;
 
         //default:
-            //printf("Invalid Motor target: %s\r\n", cmd);
+            //printf("Invalid Motor target: %s\r\n", cmdHead);
     }   
 }
 
@@ -682,6 +682,9 @@ int main(void)
         // If command is complete
         if (*cmdTail == CMD_DELIM)
         {
+            // Fake the end of a string
+            *cmdTail = 0;
+            
             // Execute command
             parseCmd();
             
